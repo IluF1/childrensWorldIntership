@@ -1,0 +1,17 @@
+.product {
+    width: 250px;
+    height: 358px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0 12px 5px 12px;
+
+}
+.img {
+    width: 250px;
+    height: 250px;
+
+}
+
+.price {
+    padding-top: 12px;
+}

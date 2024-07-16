@@ -17,18 +17,16 @@
 }
 
 .cart_block {
-    float: right;
-    margin-top: -42px;
+   float: right;
+   margin-top: -42px;
 }
 .cart_img {
-    padding-right: 140px;
-    margin-bottom: -23px;
-    
-    
+   padding-right: 140px;
+   margin-bottom: -23px;
 }
 .cart {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
+   background-color: transparent;
+   border: none;
+   cursor: pointer;
+   outline: none;
 }
