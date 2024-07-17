@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -17,6 +18,8 @@
     "@reduxjs/toolkit": "^2.2.6",
     "@types/node": "^20.14.10",
     "axios": "^1.7.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -37,5 +40,11 @@
     "eslint-plugin-react-refresh": "^0.4.8",
     "typescript": "^5.5.3",
     "vite": "^5.3.3"
+  },
+  "lint-staged": {
+    "src/**/*.{ts, tsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }

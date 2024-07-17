@@ -4,11 +4,11 @@ import { Orders } from "@/pages/orders/orders";
 
 export const Router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home/>
+    path: "/",
+    element: <Home />
   },
   {
-    path: '/orders',
-    element: <Orders/>
+    path: "/orders",
+    element: <Orders />
   }
-])
+]);

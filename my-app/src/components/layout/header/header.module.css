@@ -1,32 +1,32 @@
 .container {
-   height: 48px;
+  height: 48px;
 
-   display: block;
-   border-bottom: 1px solid #e6f1fc;
-   padding: 20px 50px 0 50px;
+  display: block;
+  border-bottom: 1px solid #e6f1fc;
+  padding: 20px 50px 0 50px;
 }
 .listPages li {
-   display: inline;
-   margin-right: 20px;
+  display: inline;
+  margin-right: 20px;
 }
 
 .listPages {
-   text-align: center;
-   margin-top: -27px;
-   margin-left: -30px;
+  text-align: center;
+  margin-top: -27px;
+  margin-left: -30px;
 }
 
 .cart_block {
-   float: right;
-   margin-top: -42px;
+  float: right;
+  margin-top: -42px;
 }
 .cart_img {
-   padding-right: 140px;
-   margin-bottom: -23px;
+  padding-right: 140px;
+  margin-bottom: -23px;
 }
 .cart {
-   background-color: transparent;
-   border: none;
-   cursor: pointer;
-   outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
