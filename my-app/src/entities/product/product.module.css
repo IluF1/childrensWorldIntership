@@ -13,3 +13,16 @@
 .price {
   padding-top: 7px;
 }
+.rating {
+  margin-top: 10px;
+}
+@media screen and (max-width: 992px) {
+  .product {
+    width: 100px;
+    height: 200px;
+  }
+  .img {
+    width: 100px;
+    height: 100px;
+  }
+}

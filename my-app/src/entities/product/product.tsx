@@ -15,7 +15,9 @@ interface IProduct {
 export const Product = ({ title, price, picture, rating }: IProduct) => {
   return (
     <div className={styles.product}>
-      <img src={picture} alt={title} className={styles.img} />
+      <div className={styles.img}>
+        <img src={picture} alt={title} className={styles.img}/>
+      </div>
       <Title style="name" children={title} />
 
       <Rating
@@ -23,6 +25,7 @@ export const Product = ({ title, price, picture, rating }: IProduct) => {
         icon={<img src={star} alt="star" />}
         readOnly
         emptyIcon={<img src={noneStar} alt="star" />}
+        className={styles.rating}
       />
 
       <div className={styles.price}>

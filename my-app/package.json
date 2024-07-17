@@ -42,7 +42,7 @@
     "vite": "^5.3.3"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
+    "src/**/*.{ts,tsx,css}": [
       "eslint --fix",
       "prettier --write"
     ]

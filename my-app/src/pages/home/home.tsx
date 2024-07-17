@@ -1,9 +1,16 @@
 import { useFetch } from "@/utils/hooks/useFetch";
 import styles from "./home.module.css";
 import { Product } from "@/entities/product/product";
+import { useState } from "react";
+import { StyledPagination } from "@/utils/helpers/styledPagination";
+
 
 export const Home = () => {
-  const { data } = useFetch('1');
+  const [page, setPage] = useState<number>(1);
+  const { data } = useFetch(page);
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
   return (
     <div className={styles.container}>
@@ -19,6 +26,14 @@ export const Home = () => {
           </li>
         ))}
       </ul>
+      <div className={styles.pagination}>
+        <StyledPagination
+          count={10}
+          shape="rounded"
+          page={page}
+          onChange={handleChange}
+        />
+      </div>
     </div>
   );
 };

@@ -7,9 +7,20 @@
 .products_list {
   width: 1600px;
   margin: auto;
-
 }
 .container {
-   margin-left: 40px;
-   overflow-x: hidden;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@media screen and (max-width:1320px) {
+  .products_list {
+    width: 1000px;
+  }
+}
+@media screen and (max-width:992px) {
+  .products_list {
+    width: 550px;
+  }
+
 }

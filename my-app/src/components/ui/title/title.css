@@ -6,11 +6,10 @@
 .name-title {
   font-weight: 400;
   line-height: 20px;
-  height: 48px;
+  height: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-
   -webkit-box-orient: vertical;
   font-size: 14px;
 }
@@ -18,4 +17,14 @@
   font-weight: 800;
   font-size: 22px;
   line-height: 24px;
+}
+
+@media screen and (max-width: 992px) {
+  .price-title {
+    font-size: 14px;
+  }
+  .name-title {
+    font-size: 12px;
+    height: 20px;
+  }
 }
