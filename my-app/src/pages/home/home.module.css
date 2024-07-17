@@ -12,15 +12,19 @@
   overflow-x: hidden;
   width: 100%;
 }
+.pagination {
+  width: 100%;
+  display: flex;
 
-@media screen and (max-width:1320px) {
+  justify-content: center;
+}
+@media screen and (max-width: 1320px) {
   .products_list {
     width: 1000px;
   }
 }
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
   .products_list {
     width: 550px;
   }
-
 }

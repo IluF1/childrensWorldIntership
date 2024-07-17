@@ -1,9 +1,13 @@
 .active {
     color: #0073E6;
+    border-bottom: 3px solid #0073E6;
 }
+
 .element {
     transition: 0.2s ease-in-out;
 }
 .element:hover {
     color: #0073E6;
 }
+
+

@@ -3,7 +3,9 @@ import styles from "./home.module.css";
 import { Product } from "@/entities/product/product";
 import { useState } from "react";
 import { StyledPagination } from "@/utils/helpers/styledPagination";
-
+import { PaginationItem } from "@mui/material";
+import ArrowBackIcon from "@/app/assets/images/Arrow Left.svg";
+import ArrowForwardIcon from "@/app/assets/images/Arrow Right.svg";
 
 export const Home = () => {
   const [page, setPage] = useState<number>(1);

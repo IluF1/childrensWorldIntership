@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { Home } from "@/pages/home/home";
 import { Orders } from "@/pages/orders/orders";
 
+
+
+
 export const Router = createBrowserRouter([
   {
     path: "/",
@@ -10,5 +13,5 @@ export const Router = createBrowserRouter([
   {
     path: "/orders",
     element: <Orders />
-  }
+  },
 ]);

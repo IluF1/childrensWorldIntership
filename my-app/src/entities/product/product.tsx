@@ -4,6 +4,7 @@ import { formatPrice } from "@/utils/helpers/formatPrice";
 import { Rating } from "@mui/material";
 import star from "@/app/assets/images/Star.svg";
 import noneStar from "@/app/assets/images/Fillness=None.svg";
+import { redirect } from "react-router-dom";
 
 interface IProduct {
   title: string;
@@ -14,7 +15,7 @@ interface IProduct {
 
 export const Product = ({ title, price, picture, rating }: IProduct) => {
   return (
-    <div className={styles.product}>
+    <div className={styles.product} onClick={() => redirect('/product')}>
       <div className={styles.img}>
         <img src={picture} alt={title} className={styles.img}/>
       </div>

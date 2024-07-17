@@ -14,7 +14,7 @@ export const StyledPagination = styled(Pagination)({
       backgroundColor: "#0073e63a"
     }
   },
-  "& .Mui-selected": {
+  "& .MuiPaginationItem-root.Mui-selected": {
     backgroundColor: "#0073E6",
     color: "#fff",
     "&:hover": {
