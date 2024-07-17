@@ -17,12 +17,14 @@ export const Product = ({ title, price, picture, rating }: IProduct) => {
     <div className={styles.product}>
       <img src={picture} alt={title} className={styles.img} />
       <Title style="name" children={title} />
+
       <Rating
         value={rating}
         icon={<img src={star} alt="star" />}
         readOnly
         emptyIcon={<img src={noneStar} alt="star" />}
       />
+
       <div className={styles.price}>
         <Title style="price" children={formatPrice(price)} />
       </div>
