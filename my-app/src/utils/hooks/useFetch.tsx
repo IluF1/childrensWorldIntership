@@ -10,14 +10,11 @@ interface IData {
   rating: string;
 }
 
-export const useFetch = () => {
-  const url = "https://skillfactory-task.detmir.team/products?page=1&limit=15";
+export const useFetch = (page: string) => {
+  const url = `https://skillfactory-task.detmir.team/products?page=${page}&limit=15`;
   const [data, setData] = useState<IData[]>([]);
   useEffect(() => {
-    const fetchData = async () => {
-      await axios.get(url).then(res => setData(res.data.data));
-    };
-    fetchData();
+    axios.get(url).then(res => setData(res.data.data));
   }, []);
 
   return { data };

@@ -6,7 +6,6 @@ interface IHeaderElement {
   link: string;
 }
 
-
 export const HeaderElement = ({ children, link }: IHeaderElement) => {
   const [active, setActive] = useState(false);
 

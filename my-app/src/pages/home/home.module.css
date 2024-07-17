@@ -1,11 +1,15 @@
-.container {
-   display: block;
-   margin: auto;
-   width: 1600px;
+.products_list li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 40px;
 }
 
-.products_list li {
-   display: inline-block;
-   margin-right: 20px;
-   margin-bottom: 40px;
+.products_list {
+  width: 1600px;
+  margin: auto;
+
+}
+.container {
+   margin-left: 40px;
+   overflow-x: hidden;
 }

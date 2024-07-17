@@ -3,7 +3,7 @@ import styles from "./home.module.css";
 import { Product } from "@/entities/product/product";
 
 export const Home = () => {
-  const { data } = useFetch();
+  const { data } = useFetch('1');
 
   return (
     <div className={styles.container}>
