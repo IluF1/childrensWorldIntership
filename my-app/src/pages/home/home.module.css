@@ -9,8 +9,8 @@
   margin: auto;
 }
 .container {
-  overflow-x: hidden;
   width: 100%;
+  margin-left: 50px;
 }
 .pagination {
   width: 100%;

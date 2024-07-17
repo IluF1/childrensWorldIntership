@@ -13,14 +13,11 @@ interface IData {
 export const useFetch = (page: number) => {
   const url = `https://skillfactory-task.detmir.team/products?page=${page}&limit=15`;
   const [data, setData] = useState<IData[]>([]);
-  const [link, setLink] = useState<string>("");
+  
+
   useEffect(() => {
     axios.get(url).then(res => setData(res.data.data));
-
-    setLink(
-      `https://skillfactory-task.detmir.team/products?page=${page}&limit=15`
-    );
   }, [page]);
 
-  return { data, link };
+  return { data };
 };

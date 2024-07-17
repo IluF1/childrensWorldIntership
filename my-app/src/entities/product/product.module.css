@@ -4,12 +4,9 @@
   background-color: white;
   border-radius: 20px;
   padding: 0 12px 5px 12px;
-  transition: 0.3s ease-in;
   cursor: pointer;
 }
-.product:hover {
-  background-color: rgb(217, 217, 217);
-}
+
 .img {
   width: 250px;
   height: 250px;

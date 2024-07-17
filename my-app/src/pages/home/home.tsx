@@ -3,13 +3,17 @@ import styles from "./home.module.css";
 import { Product } from "@/entities/product/product";
 import { useState } from "react";
 import { StyledPagination } from "@/utils/helpers/styledPagination";
-import { PaginationItem } from "@mui/material";
-import ArrowBackIcon from "@/app/assets/images/Arrow Left.svg";
-import ArrowForwardIcon from "@/app/assets/images/Arrow Right.svg";
+import { useSetParam } from "@/utils/hooks/useSetParams";
 
 export const Home = () => {
-  const [page, setPage] = useState<number>(1);
+  let currentUrl = new URL(window.location.href);
+  const [page, setPage] = useState<number>(
+    Number(currentUrl.searchParams.get("page")) || 1
+  );
+  useSetParam("page", String(page));
+
   const { data } = useFetch(page);
+
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
@@ -32,7 +36,7 @@ export const Home = () => {
         <StyledPagination
           count={10}
           shape="rounded"
-          page={page}
+          page={Number(currentUrl.searchParams.get("page"))}
           onChange={handleChange}
         />
       </div>
