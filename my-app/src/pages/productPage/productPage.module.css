@@ -1,0 +1,46 @@
+.container {
+    width: 792px;
+    display: block;
+    margin: 30px auto 20px auto;
+}
+.main {
+    background-color: white;
+    height: 422px;
+    width: 100%;
+    border-radius: 16px;
+    padding: 30px 0 10px 50px;
+    display: block;
+}
+.picture {
+    width: 374px;
+    height: 374px;
+}
+.description {
+    width: 100%;
+    display: inline-table;
+    height: auto;
+    background-color: white;
+    margin-top: 50px;
+    border-radius: 16px;
+    padding: 23px;
+}
+
+.information {
+    float: right;
+    width: 346px;
+    margin-right: 50px;
+}
+.rating,
+.price {
+    margin-top: 10px;
+}
+.addToCartBtn {
+    margin-top: 20px;
+}
+.description_text {
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 16px;
+    margin-top: 10px;
+
+}

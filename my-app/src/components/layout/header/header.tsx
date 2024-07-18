@@ -7,7 +7,9 @@ import cartImg from '@/app/assets/images/Cart.svg';
 export const Header = () => {
     return (
         <div className={styles.container}>
-            <img src={logo} alt="logo" />
+            <a href="/">
+                <img src={logo} alt="logo" />
+            </a>
             <ul className={styles.listPages}>
                 <li>
                     <HeaderElement link="/" children="Товары" />

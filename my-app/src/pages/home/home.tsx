@@ -1,10 +1,10 @@
-import { useFetch } from '@/utils/hooks/useFetch';
 import styles from './home.module.css';
 import { Product } from '@/entities/product/product';
 import { useState } from 'react';
-import { StyledPagination } from '@/utils/helpers/styledPagination';
+import { StyledPagination } from '@/utils/helpers/styledMui';
 import { useSetParam } from '@/utils/hooks/useSetParams';
 import { currentUrl } from '@/utils/constants/constants';
+import { useGetData } from '@/utils/hooks/useGetData';
 
 export const Home = () => {
     const [page, setPage] = useState<number>(
@@ -12,7 +12,7 @@ export const Home = () => {
     );
     useSetParam('page', String(page));
 
-    const { data } = useFetch(page);
+    const { data } = useGetData(page);
 
     const handleChange = (
         _event: React.ChangeEvent<unknown>,
@@ -27,6 +27,7 @@ export const Home = () => {
                 {data.map(product => (
                     <li key={product.id} className={styles.element}>
                         <Product
+                            id={product.id}
                             price={product.price}
                             title={product.title}
                             rating={Number(product.rating)}
