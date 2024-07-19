@@ -1,5 +1,6 @@
-import { Button } from '@mui/material';
 import { MouseEventHandler } from 'react';
+
+import { Button } from '@mui/material';
 
 interface IButton {
     children: string;

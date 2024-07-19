@@ -1,10 +1,12 @@
-import styles from './home.module.css';
-import { Product } from '@/entities/product/product';
 import { useState } from 'react';
-import { StyledPagination } from '@/utils/helpers/styledMui';
-import { useSetParam } from '@/utils/hooks/useSetParams';
+
+import { Product } from '@/entities/product/product';
 import { currentUrl } from '@/utils/constants/constants';
+import { StyledPagination } from '@/utils/helpers/styledMui';
 import { useGetData } from '@/utils/hooks/useGetData';
+import { useSetParam } from '@/utils/hooks/useSetParams';
+
+import styles from './home.module.css';
 
 export const Home = () => {
     const [page, setPage] = useState<number>(

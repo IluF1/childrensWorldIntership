@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import styles from './headerElement.module.css';
+
 import { IHeaderElement } from '@/utils/interfaces/interfaces';
+
+import styles from './headerElement.module.css';
 
 export const HeaderElement = ({ children, link }: IHeaderElement) => {
     const [active, setActive] = useState(false);

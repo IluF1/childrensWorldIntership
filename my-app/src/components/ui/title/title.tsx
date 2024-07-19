@@ -19,7 +19,7 @@ export const Title = ({ children, style }: ITitle) => {
         classNames.push('bigPrice-title');
     }
     if (style === 'description') {
-      classNames.push('description-title')
+        classNames.push('description-title');
     }
     return <p className={classNames.join(' ')}>{children}</p>;
 };

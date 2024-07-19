@@ -1,8 +1,9 @@
-import { HeaderElement } from '@/components/ui/headerElement/headerElement';
-import styles from './header.module.css';
-import logo from '@/app/assets/images/Logo.svg';
-import { Title } from '@/components/ui/title/title';
 import cartImg from '@/app/assets/images/Cart.svg';
+import logo from '@/app/assets/images/Logo.svg';
+import { HeaderElement } from '@/components/ui/headerElement/headerElement';
+import { Title } from '@/components/ui/title/title';
+
+import styles from './header.module.css';
 
 export const Header = () => {
     return (

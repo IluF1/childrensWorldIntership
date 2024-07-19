@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import axios from 'axios';
+
 import { IData } from '../interfaces/interfaces';
 
 export const useGetData = (page: number) => {

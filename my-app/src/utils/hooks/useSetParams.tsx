@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { currentUrl } from '../constants/constants';
 
 export const useSetParam = (name: string, value: string) => {

@@ -5,11 +5,11 @@
 }
 .main {
     background-color: white;
-    height: 422px;
+    height: auto;
     width: 100%;
     border-radius: 16px;
     padding: 30px 0 10px 50px;
-    display: block;
+    display: inline-table;
 }
 .picture {
     width: 374px;
@@ -42,5 +42,23 @@
     line-height: 20px;
     font-size: 16px;
     margin-top: 10px;
+}
 
+.returnCondition_block {
+    margin-top: 20px;
+}
+.undoImg {
+    margin-right: 10px;
+    margin-bottom: -4px;
+}
+.returnCondition_text {
+    font-weight: 400;
+    line-height: 20px;
+}
+.pricesMayVary_text {
+    color: rgba(128, 128, 128, 1);
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 10px;
+    padding-bottom: 60px;
 }

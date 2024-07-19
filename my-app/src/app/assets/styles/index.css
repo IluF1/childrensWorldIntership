@@ -1,12 +1,7 @@
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-VariableFont_wght.ttf');
-    font-weight: 700;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 * {
-    font-family: 'Nunito';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 16px;
     margin: 0;
     padding: 0;

@@ -1,16 +1,18 @@
-import styles from './productPage.module.css';
-import { Title } from '@/components/ui/title/title';
-import star from '@/app/assets/images/Star.svg';
-import noneStar from '@/app/assets/images/Fillness=None.svg';
 import { Rating } from '@mui/material';
-import { formatPrice } from '@/utils/helpers/formatPrice';
-import { productId } from '@/utils/constants/constants';
-import { useGetProductById } from '@/utils/hooks/useGetProductById';
+
+import noneStar from '@/app/assets/images/Fillness=None.svg';
+import star from '@/app/assets/images/Star.svg';
+import undoImg from '@/app/assets/images/Undo.svg';
 import { MyButton } from '@/components/ui/button/button';
+import { Title } from '@/components/ui/title/title';
+import { productId } from '@/utils/constants/constants';
+import { formatPrice } from '@/utils/helpers/formatPrice';
+import { useGetProductById } from '@/utils/hooks/useGetProductById';
+
+import styles from './productPage.module.css';
 
 export const ProductPage = () => {
     const { product } = useGetProductById(Number(productId));
-
     return (
         <div className={styles.container}>
             <div className={styles.main}>
@@ -35,7 +37,25 @@ export const ProductPage = () => {
                         />
                     </div>
                     <div className={styles.addToCartBtn}>
-                        <MyButton children='Добавить в корзину'/>
+                        <MyButton children="Добавить в корзину" />
+                    </div>
+                    <div className={styles.returnCondition_block}>
+                        <Title style="bold">
+                            <img
+                                src={undoImg}
+                                alt="img"
+                                className={styles.undoImg}
+                            />
+                            Условие возврата
+                        </Title>
+                        <h3 className={styles.returnCondition_text}>
+                            Обменять или вернуть товар надлежащего качества
+                            можно в течение 14 дней с момента покупки.
+                        </h3>
+                        <h4 className={styles.pricesMayVary_text}>
+                            Цены в интернет-магазине могут отличаться от
+                            розничных магазинов.
+                        </h4>
                     </div>
                 </div>
             </div>
