@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
+import { StyledPagination } from '@/components/ui/pagination/pagination';
 import { Product } from '@/entities/product/product';
 import { currentUrl } from '@/utils/constants/constants';
-import { StyledPagination } from '@/utils/helpers/styledMui';
-import { useGetData } from '@/utils/hooks/useGetData';
+import { useGetProducts } from '@/utils/hooks/useGetProducts';
 import { useSetParam } from '@/utils/hooks/useSetParams';
 
 import styles from './home.module.css';
@@ -14,7 +14,7 @@ export const Home = () => {
     );
     useSetParam('page', String(page));
 
-    const { data } = useGetData(page);
+    const { data } = useGetProducts(page);
 
     const handleChange = (
         _event: React.ChangeEvent<unknown>,

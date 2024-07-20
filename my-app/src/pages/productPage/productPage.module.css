@@ -1,7 +1,7 @@
 .container {
     width: 792px;
     display: block;
-    margin: 30px auto 20px auto;
+    margin: 0 auto 20px auto;
 }
 .main {
     background-color: white;
@@ -61,4 +61,20 @@
     line-height: 16px;
     margin-top: 10px;
     padding-bottom: 60px;
+}
+.back {
+    color: rgba(0, 115, 230, 1);
+    font-weight: 700;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 20px;
+
+    position: absolute;
+}
+.back_img {
+    margin-bottom: -3px;
+    margin-right: 10px;
+}
+.page {
+    padding: 20px;
 }
