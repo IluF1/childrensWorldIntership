@@ -1,3 +1,7 @@
+import { MouseEventHandler } from 'react';
+
+import { stylesTitle } from '../constants/constants';
+
 export interface IProduct {
     id: number;
     title: string;
@@ -6,18 +10,9 @@ export interface IProduct {
     rating: number;
 }
 
-type stylesTitle =
-    | 'name'
-    | 'red'
-    | 'bold'
-    | 'bigName'
-    | 'price'
-    | 'bigPrice'
-    | 'description';
-
 export interface ITitle {
     style: stylesTitle;
-    children: any;
+    children: unknown;
 }
 
 export interface IHeaderElement {
@@ -32,4 +27,27 @@ export interface IData {
     price: number;
     picture: string;
     rating: string;
+}
+
+export interface IButton {
+    children: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface ICart {
+    active: boolean;
+    setActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface ICartData {
+    quantity: number;
+    product: {
+        id: string;
+        title: string;
+        description: string;
+        category: string;
+        price: number;
+        picture: string;
+        rating: string;
+    };
 }

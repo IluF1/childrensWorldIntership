@@ -1,11 +1,6 @@
-import { MouseEventHandler } from 'react';
-
 import { Button } from '@mui/material';
 
-interface IButton {
-    children: string;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+import { IButton } from '@/utils/interfaces/interfaces';
 
 export const MyButton = ({ children, onClick }: IButton) => {
     return (
@@ -13,11 +8,12 @@ export const MyButton = ({ children, onClick }: IButton) => {
             onClick={onClick}
             sx={{
                 background: 'rgba(0, 115, 230, 1)',
-                width: '346px',
+                width: '100%',
                 height: '52px',
                 color: 'white',
                 borderRadius: '12px',
                 fontWeight: '700',
+                textTransform: 'none',
                 lineHeight: '20px',
                 '&:hover': {
                     backgroundColor: '#014a94',
