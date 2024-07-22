@@ -21,10 +21,10 @@ export const Home = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <ul className={styles.products_list}>
+    <div className={styles.home}>
+      <ul className={styles.home__products}>
         {data.map(product => (
-          <li key={product.id} className={styles.element}>
+          <li key={product.id} className={styles.home__products_item}>
             <Product
               id={product.id}
               price={product.price}
@@ -35,7 +35,7 @@ export const Home = () => {
           </li>
         ))}
       </ul>
-      <div className={styles.pagination}>
+      <div className={styles.home__pagination}>
         <StyledPagination
           count={10}
           shape="rounded"

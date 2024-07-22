@@ -11,6 +11,7 @@ import { CartItem } from '../cart_item/cart_item';
 export const Cart = ({ active, setActive }: ICart) => {
   const handleClose = () => setActive(false);
   const { data } = useGetStateCart();
+
   return (
     <div>
       <Modal open={active} onClose={handleClose} className={styles.modal}>
@@ -28,10 +29,10 @@ export const Cart = ({ active, setActive }: ICart) => {
                 </li>
               ))}
             </ul>
-            <div className={styles.amount_block}>
-              <div className={styles.total}>
-                <h2 className={styles.total_text}>Итого</h2>
-                <div className={styles.price}></div>
+            <div className={styles['cart__amount-total']}>
+              <div className={styles.cart__total}>
+                <h2 className={styles['cart__total-text']}>Итого</h2>
+                <div className={styles['cart__total-price']}></div>
               </div>
               <MyButton children="Оформить заказ" />
             </div>

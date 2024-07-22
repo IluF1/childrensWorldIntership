@@ -17,57 +17,64 @@ export const ProductPage = () => {
   const navigate = useNavigate();
   const { product } = useGetProductById(Number(productId));
   return (
-    <div className={styles.page}>
-      <a className={styles.back} onClick={() => navigate(-1)}>
-        <img src={arrowLeft} alt="back" className={styles.back_img} />
+    <div className={styles['product-page']}>
+      <a className={styles['product-page__back']} onClick={() => navigate(-1)}>
+        <img
+          src={arrowLeft}
+          alt="back"
+          className={styles['product-page__back-img']}
+        />
         Назад
       </a>
-      <div className={styles.container}>
-        <div className={styles.main}>
+      <div className={styles['product-page__container']}>
+        <div className={styles['product-page__main']}>
           <img
             src={product?.picture}
             alt={product?.title}
-            className={styles.picture}
+            className={styles['product-page__picture']}
           />
-          <div className={styles.information}>
-            <Title style="bigName" children={product?.title} />
+          <div className={styles['product-page__information']}>
+            <Title style="bigName">{product?.title}</Title>
             <Rating
               value={Number(product?.rating)}
               icon={<img src={star} alt="star" />}
               readOnly
               emptyIcon={<img src={noneStar} alt="star" />}
-              className={styles.rating}
+              className={styles['product-page__rating']}
             />
-            <div className={styles.price}>
-              <Title
-                style="bigPrice"
-                children={formatPrice(Number(product?.price))}
-              />
+            <div className={styles['product-page__price']}>
+              <Title style="bigPrice">
+                {formatPrice(Number(product?.price))}
+              </Title>
             </div>
-            <div className={styles.addToCartBtn}>
-              <MyButton children="Добавить в корзину" />
+            <div className={styles['product-page__add-to-cart-btn']}>
+              <MyButton>Добавить в корзину</MyButton>
             </div>
-            <div className={styles.returnCondition_block}>
+            <div className={styles['product-page__return-condition']}>
               <Title style="bold">
-                <img src={undoImg} alt="img" className={styles.undoImg} />
+                <img
+                  src={undoImg}
+                  alt="img"
+                  className={styles['product-page__return-condition-img']}
+                />
                 Условие возврата
               </Title>
-              <h3 className={styles.returnCondition_text}>
+              <h3 className={styles['product-page__return-condition-text']}>
                 Обменять или вернуть товар надлежащего качества можно в течение
                 14 дней с момента покупки.
               </h3>
-              <h4 className={styles.pricesMayVary_text}>
+              <h4 className={styles['product-page__prices-may-vary']}>
                 Цены в интернет-магазине могут отличаться от розничных
                 магазинов.
               </h4>
             </div>
           </div>
         </div>
-        <div className={styles.description}>
-          <Title style="bold" children={'Описание'} />
+        <div className={styles['product-page__description']}>
+          <Title style="bold">Описание</Title>
 
           <div
-            className={styles.description_text}
+            className={styles['product-page__description-text']}
             dangerouslySetInnerHTML={{
               __html: product?.description,
             }}

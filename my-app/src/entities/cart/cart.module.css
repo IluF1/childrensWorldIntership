@@ -1,15 +1,24 @@
-.amount_block {
+.cart__amount-total {
   padding: 27px 0 5px 0;
 }
-.total {
+
+.cart__total {
   margin-bottom: 20px;
 }
-.price {
+
+.cart__total-price {
   float: right;
   margin-top: -30px;
 }
-.total_text {
+
+.cart__total-text {
   font-size: 24px;
   font-weight: 700;
   line-height: 24px;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -14,21 +14,28 @@ export const Header = () => {
   const totalQuantity = 0;
 
   return (
-    <div className={styles.container}>
-      <a href="/">
-        <img src={logo} alt="logo" />
+    <div className={styles.header}>
+      <a href="/" className={styles['header__logo']}>
+        <img src={logo} alt="logo" className={styles['header__logo-img']} />
       </a>
-      <ul className={styles.listPages}>
-        <li>
+      <ul className={styles['header__list-pages']}>
+        <li className={styles['header__list-item']}>
           <HeaderElement link="/" children="Товары" />
         </li>
-        <li>
+        <li className={styles['header__list-item']}>
           <HeaderElement link="/orders" children="Заказы" />
         </li>
       </ul>
-      <div className={styles.cart_block}>
-        <button className={styles.cart} onClick={() => setActive(!active)}>
-          <img src={cartImg} alt="cart" className={styles.cart_img} />
+      <div className={styles['header__cart']}>
+        <button
+          className={styles['header__cart-btn']}
+          onClick={() => setActive(!active)}
+        >
+          <img
+            src={cartImg}
+            alt="cart"
+            className={styles['header__cart-img']}
+          />
           <Title children={`Корзина (${totalQuantity})`} style="bold" />
         </button>
       </div>

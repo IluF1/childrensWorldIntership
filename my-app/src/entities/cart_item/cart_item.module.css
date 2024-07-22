@@ -1,13 +1,15 @@
-.container {
+.cart-item {
   width: 100%;
   height: 84px;
   border-bottom: 1px solid #e6f1fc;
 }
-.img {
+
+.cart-item__img {
   width: 52px;
   height: 52px;
 }
-.title {
+
+.cart-item__title {
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
@@ -18,7 +20,8 @@
   margin-top: -40px;
   text-overflow: ellipsis;
 }
-.btn {
+
+.cart-item__btn {
   width: 156px;
   height: 52px;
   margin-left: 220px;
@@ -26,7 +29,8 @@
   display: block;
   background-color: aqua;
 }
-.price {
+
+.cart-item__price {
   float: right;
   margin-top: -44px;
 }

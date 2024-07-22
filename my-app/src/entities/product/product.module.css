@@ -7,23 +7,27 @@
   cursor: pointer;
 }
 
-.img {
+.product__img {
   width: 250px;
   height: 250px;
+  display: block;
 }
 
-.price {
+.product__price {
   padding-top: 7px;
 }
-.rating {
+
+.product__rating {
   margin-top: 10px;
 }
+
 @media screen and (max-width: 992px) {
   .product {
     width: 100px;
     height: 200px;
   }
-  .img {
+
+  .product__img {
     width: 100px;
     height: 100px;
   }
