@@ -10,8 +10,8 @@ import { Router } from './router';
 import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <Header />
-        <RouterProvider router={Router} />
-    </React.StrictMode>,
+  <React.StrictMode>
+    <Header />
+    <RouterProvider router={Router} />
+  </React.StrictMode>,
 );

@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  height: 84px;
+  border-bottom: 1px solid #e6f1fc;
+}
+.img {
+  width: 52px;
+  height: 52px;
+}
+.title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 60px;
+  margin-top: -40px;
+  text-overflow: ellipsis;
+}
+.btn {
+  width: 156px;
+  height: 52px;
+  margin-left: 220px;
+  margin-top: -35px;
+  display: block;
+  background-color: aqua;
+}
+.price {
+  float: right;
+  margin-top: -44px;
+}

@@ -1,16 +1,15 @@
 .amount_block {
-    padding: 27px 0 5px 0;
-    border-top: 1px solid #e6f1fc;
+  padding: 27px 0 5px 0;
 }
 .total {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .price {
-    float: right;
-    margin-top: -30px;
+  float: right;
+  margin-top: -30px;
 }
 .total_text {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
 }
