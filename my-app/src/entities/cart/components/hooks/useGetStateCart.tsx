@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import { ICartData } from './interfaces/interfaces';
+import { ICartData } from '../interfaces';
 
 export const useGetStateCart = () => {
   const url = 'https://skillfactory-task.detmir.team/cart';

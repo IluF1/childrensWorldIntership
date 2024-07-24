@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import { IData } from './interfaces/interfaces';
+import { IData } from '@/feautures/utils/hooks/interfaces/interfaces';
 
 export const useGetProductById = (id: number) => {
   const url = `https://skillfactory-task.detmir.team/products/${id}`;

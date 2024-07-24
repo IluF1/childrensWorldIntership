@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import cartImg from '@/app/assets/images/Cart.svg';
 import logo from '@/app/assets/images/Logo.svg';
-import { HeaderElement } from '@/components/ui/headerElement/headerElement';
-import { Title } from '@/components/ui/title/title';
-import { Cart } from '@/entities/cart/cart';
+import { Cart } from '@/entities/cart/view';
+import { Title } from '@/features/ui/title/title';
 
-import styles from './header.module.css';
+import { HeaderElement } from './components/ui/headerElement/headerElement';
+import styles from './view.module.css';
 
 export const Header = () => {
   const [active, setActive] = useState<boolean>(false);

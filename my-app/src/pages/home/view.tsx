@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import { StyledPagination } from '@/components/ui/pagination/pagination';
-import { Product } from '@/entities/product/product';
-import { currentUrl } from '@/utils/constants/constants';
-import { useGetProducts } from '@/utils/hooks/useGetProducts';
+import { Product } from '@/entities/product/view';
+import { currentUrl } from '@/features/utils/constants/constants';
+import { StyledPagination } from '@/pages/home/components/ui/pagination/pagination';
 
+import { useGetProducts } from './components/hooks/useGetProducts';
 import { useSetParam } from './components/hooks/useSetParams';
-import styles from './home.module.css';
+import styles from './view.module.css';
 
 export const Home = () => {
   const [page, setPage] = useState<number>(

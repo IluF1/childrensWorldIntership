@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './assets/styles/index.css';
 import { RouterProvider } from 'react-router-dom';
 
-import { Header } from '@/components/layout/header/header';
+import { Header } from '@/features/layout/header/view';
 
 import { Router } from './router';
 

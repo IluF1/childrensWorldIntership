@@ -5,13 +5,13 @@ import arrowLeft from '@/app/assets/images/Arrow Left.svg';
 import noneStar from '@/app/assets/images/Fillness=None.svg';
 import star from '@/app/assets/images/Star.svg';
 import undoImg from '@/app/assets/images/Undo.svg';
-import { MyButton } from '@/components/ui/button/button';
-import { Title } from '@/components/ui/title/title';
-import { formatPrice } from '@/utils/helpers/formatPrice';
-import { useGetProductById } from '@/utils/hooks/useGetProductById';
+import { MyButton } from '@/features/ui/button/button';
+import { Title } from '@/features/ui/title/title';
+import { formatPrice } from '@/features/utils/helpers/formatPrice';
 
-import { productId } from './components/constants';
-import styles from './productPage.module.css';
+import { productId } from './helpers/constants';
+import { useGetProductById } from './hooks/useGetProductById';
+import styles from './view.module.css';
 
 export const ProductPage = () => {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
-import { Title } from '@/components/ui/title/title';
-import { formatPrice } from '@/utils/helpers/formatPrice';
+import { Title } from '@/features/ui/title/title';
+import { formatPrice } from '@/features/utils/helpers/formatPrice';
 
-import styles from './cart_item.module.css';
 import { ICartItem } from './interfaces/interfaces';
+import styles from './view.module.css';
 
 export const CartItem = ({ title, img, price, id }: ICartItem) => {
   return (

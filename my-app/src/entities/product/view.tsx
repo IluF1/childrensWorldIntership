@@ -2,11 +2,11 @@ import { Rating } from '@mui/material';
 
 import noneStar from '@/app/assets/images/Fillness=None.svg';
 import star from '@/app/assets/images/Star.svg';
-import { Title } from '@/components/ui/title/title';
-import { formatPrice } from '@/utils/helpers/formatPrice';
+import { Title } from '@/features/ui/title/title';
+import { formatPrice } from '@/features/utils/helpers/formatPrice';
 
 import { IProduct } from './components/interfaces';
-import styles from './product.module.css';
+import styles from './view.module.css';
 
 export const Product = ({ title, price, picture, rating, id }: IProduct) => {
   return (

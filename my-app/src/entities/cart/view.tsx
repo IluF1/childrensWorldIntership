@@ -1,12 +1,12 @@
 import { Box, Modal } from '@mui/material';
 
-import { MyButton } from '@/components/ui/button/button';
-import { useGetStateCart } from '@/utils/hooks/useGetStateCart';
+import { MyButton } from '@/features/ui/button/button';
 
-import styles from './cart.module.css';
 import { style } from './components/constants';
+import { useGetStateCart } from './components/hooks/useGetStateCart';
 import { ICart } from './components/interfaces';
-import { CartItem } from '../cart_item/cart_item';
+import styles from './view.module.css';
+import { CartItem } from '../cart_item/view';
 
 export const Cart = ({ active, setActive }: ICart) => {
   const handleClose = () => setActive(false);
