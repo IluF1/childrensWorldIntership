@@ -8,10 +8,14 @@ import { Router } from './router';
 
 // eslint-disable-next-line import/order
 import React from 'react';
+import { Provider } from 'react-redux';
+import { Store } from '@/features/store/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Header />
-    <RouterProvider router={Router} />
+    <Provider store={Store}>
+      <Header />
+      <RouterProvider router={Router} />
+    </Provider>
   </React.StrictMode>,
 );

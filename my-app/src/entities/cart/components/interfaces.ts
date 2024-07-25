@@ -3,8 +3,8 @@ export interface ICart {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+
 export interface ICartData {
-  quantity: number;
   product: {
     id: string;
     title: string;
@@ -14,16 +14,6 @@ export interface ICartData {
     picture: string;
     rating: string;
   };
-}
-export interface ICartData {
-  quantity: number;
-  product: {
-    id: string;
-    title: string;
-    description: string;
-    category: string;
-    price: number;
-    picture: string;
-    rating: string;
-  };
+  quantity: number,
+  createdAt?: string
 }

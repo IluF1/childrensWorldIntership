@@ -7,11 +7,11 @@ import { Title } from '@/features/ui/title/title';
 
 import { HeaderElement } from './components/ui/headerElement/headerElement';
 import styles from './view.module.css';
+import { useAppSelector } from '@/features/store/store';
 
 export const Header = () => {
   const [active, setActive] = useState<boolean>(false);
-
-  const totalQuantity = 0;
+  const amount = useAppSelector(state => state.cart.amount)
 
   return (
     <div className={styles.header}>
@@ -36,7 +36,7 @@ export const Header = () => {
             alt="cart"
             className={styles['header__cart-img']}
           />
-          <Title children={`Корзина (${totalQuantity})`} style="bold" />
+          <Title children={`Корзина (${amount})`} style="bold" />
         </button>
       </div>
       {active && <Cart active={active} setActive={setActive} />}

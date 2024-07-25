@@ -3,22 +3,27 @@ import { Box, Modal } from '@mui/material';
 import { MyButton } from '@/features/ui/button/button';
 
 import { style } from './components/constants';
-import { useGetStateCart } from './components/hooks/useGetStateCart';
 import { ICart } from './components/interfaces';
 import styles from './view.module.css';
 import { CartItem } from '../cart_item/view';
+import { useAppDispatch, useAppSelector } from '@/features/store/store';
+import { useEffect } from 'react';
+import { fetchDataCart } from '@/features/store/slices/cart.slice';
 
 export const Cart = ({ active, setActive }: ICart) => {
   const handleClose = () => setActive(false);
-  const { data } = useGetStateCart();
-
+  const dispatch = useAppDispatch()
+  const items = useAppSelector(state => state.cart.cart)
+  useEffect(() => {
+    dispatch(fetchDataCart())
+  }, [dispatch])
   return (
     <div>
       <Modal open={active} onClose={handleClose} className={styles.modal}>
         <Box sx={style}>
           <div>
             <ul>
-              {data?.map(product => (
+              {items?.map(product => (
                 <li key={product.product.id}>
                   <CartItem
                     title={product.product.title}

@@ -9,13 +9,28 @@ import { MyButton } from '@/features/ui/button/button';
 import { Title } from '@/features/ui/title/title';
 import { formatPrice } from '@/features/utils/helpers/formatPrice';
 
-import { productId } from './helpers/constants';
-import { useGetProductById } from './hooks/useGetProductById';
+import { productId } from './components/helpers/constants';
+import { useGetProductById } from './components/hooks/useGetProductById';
 import styles from './view.module.css';
+import { useAppDispatch } from '@/features/store/store';
+import { addItemToCart } from '@/features/store/slices/cart.slice';
+
 
 export const ProductPage = () => {
   const navigate = useNavigate();
-  const { product } = useGetProductById(Number(productId));
+  const { card } = useGetProductById(Number(productId));
+  const dispatch = useAppDispatch()
+  if (!card) {
+    return <div></div>
+  }
+  const handleAddToCart = () => {
+    const item = {
+      quantity: 1,
+      id: card.id
+    };
+    dispatch(addItemToCart(item));
+  };
+  
   return (
     <div className={styles['product-page']}>
       <a className={styles['product-page__back']} onClick={() => navigate(-1)}>
@@ -29,14 +44,14 @@ export const ProductPage = () => {
       <div className={styles['product-page__container']}>
         <div className={styles['product-page__main']}>
           <img
-            src={product?.picture}
-            alt={product?.title}
+            src={card?.picture}
+            alt={card?.title}
             className={styles['product-page__picture']}
           />
           <div className={styles['product-page__information']}>
-            <Title style="bigName">{product?.title}</Title>
+            <Title style="bigName">{card?.title}</Title>
             <Rating
-              value={Number(product?.rating)}
+              value={Number(card?.rating)}
               icon={<img src={star} alt="star" />}
               readOnly
               emptyIcon={<img src={noneStar} alt="star" />}
@@ -44,11 +59,11 @@ export const ProductPage = () => {
             />
             <div className={styles['product-page__price']}>
               <Title style="bigPrice">
-                {formatPrice(Number(product?.price))}
+                {formatPrice(Number(card?.price))}
               </Title>
             </div>
             <div className={styles['product-page__add-to-cart-btn']}>
-              <MyButton>Добавить в корзину</MyButton>
+              <MyButton onClick={handleAddToCart}>Добавить в корзину</MyButton>
             </div>
             <div className={styles['product-page__return-condition']}>
               <Title style="bold">
@@ -76,7 +91,7 @@ export const ProductPage = () => {
           <div
             className={styles['product-page__description-text']}
             dangerouslySetInnerHTML={{
-              __html: product?.description,
+              __html: card?.description,
             }}
           />
         </div>
