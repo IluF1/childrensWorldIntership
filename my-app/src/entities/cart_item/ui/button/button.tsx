@@ -9,17 +9,17 @@ export const CartButton = () => {
   return (
     <div className={styles.button}>
       <button
-        onClick={() => setCount(count + 1)}
-        className={styles.button__plus}
-      >
-        <img src={plus} alt="plus" />
-      </button>
-      <Title children={count} style="bold" />
-      <button
         onClick={() => (count === 0 ? null : setCount(count - 1))}
         className={styles.button__minus}
       >
         <img src={minus} alt="minus" />
+      </button>
+      <Title children={count} style="bold" />
+      <button
+        onClick={() => setCount(count + 1)}
+        className={styles.button__plus}
+      >
+        <img src={plus} alt="plus" />
       </button>
     </div>
   );

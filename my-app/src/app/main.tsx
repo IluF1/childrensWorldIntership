@@ -9,8 +9,7 @@ import { Router } from './router';
 // eslint-disable-next-line import/order
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Store } from '@/features/store/store';
-
+import { Store } from '@/app/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

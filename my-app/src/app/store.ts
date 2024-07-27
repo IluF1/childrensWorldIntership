@@ -1,18 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { cartReducer } from './slices/cart.slice';
+import { cartReducer } from '../entities/cart/model/slice/cart.slice';
 
-const rootReducer = combineReducers(
-  {
-    cart: cartReducer
-  }
-)
+const rootReducer = combineReducers({
+  cart: cartReducer,
+});
 
 export const Store = configureStore({
   reducer: rootReducer,
 });
-
 
 export type RootState = ReturnType<typeof Store.getState>;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

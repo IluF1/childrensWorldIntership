@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchCartData, addItemToCart } from '../api';
+import { fetchCartData, addItemToCart } from '../api/api';
 import { ICartData } from '@/entities/cart/model/interfaces';
 
 export interface IInitialState {

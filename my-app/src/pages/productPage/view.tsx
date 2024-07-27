@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { productId } from './model/helpers/constants';
 import { useGetProductById } from './model/hooks/useGetProductById';
 import styles from './view.module.css';
-import { useAppDispatch } from '@/features/store/store';
-import { addItemToCart } from '@/features/store/api';
+import { useAppDispatch } from '@/app/store';
+import { addItemToCart } from '@/entities/cart/model/api/api';
 import {
   arrowLeft,
   formatPrice,

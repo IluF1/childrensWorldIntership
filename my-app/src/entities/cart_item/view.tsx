@@ -6,7 +6,9 @@ import { formatPrice, Title } from '@/shared';
 export const CartItem = ({ title, img, price, id }: ICartItem) => {
   return (
     <div className={styles['cart-item']}>
-      <img src={img} alt={title} className={styles['cart-item__img']} />
+      <div className={styles['cart-item__img-block']}>
+        <img src={img} alt={title} className={styles['cart-item__img']} />
+      </div>
       <h1 className={styles['cart-item__title']}>
         <a href={`/product/${id}`}>{title}</a>
       </h1>

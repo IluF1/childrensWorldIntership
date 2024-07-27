@@ -1,19 +1,22 @@
+
+
 import { Box, Modal } from '@mui/material';
+
+import { useAppDispatch, useAppSelector } from '@/app/store';
+import { fetchCartData } from '@/entities/cart/model/api/api';
+import { formatPrice, MyButton, Title } from '@/shared';
 
 import { style } from './model/constants';
 import { ICart } from './model/interfaces';
 import styles from './view.module.css';
 import { CartItem } from '../cart_item/view';
-import { useAppDispatch, useAppSelector } from '@/features/store/store';
-import { useEffect } from 'react';
-import { fetchCartData } from '@/features/store/api';
-import { formatPrice, MyButton, Title } from '@/shared';
 
 export const Cart = ({ active, setActive }: ICart) => {
   const handleClose = () => setActive(false);
 
   const data = useAppSelector(state => state.cart.cart);
   const dispatch = useAppDispatch();
+  dispatch(fetchCartData());
 
   if (!data || data.length === 0) {
     return (
@@ -25,9 +28,8 @@ export const Cart = ({ active, setActive }: ICart) => {
     );
   }
 
-  useEffect(() => {
-    dispatch(fetchCartData());
-  }, [dispatch]);
+
+
 
   const totalPrice = data.reduce((acc, item) => {
     if (item && item.product) {

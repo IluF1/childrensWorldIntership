@@ -4,7 +4,7 @@ import { Cart } from '@/entities/cart/view';
 
 import { HeaderElement } from './ui/headerElement/headerElement';
 import styles from './view.module.css';
-import { useAppSelector } from '@/features/store/store';
+import { useAppSelector } from '@/app/store';
 import { cartImg, logo, Title } from '@/shared';
 
 export const Header = () => {
