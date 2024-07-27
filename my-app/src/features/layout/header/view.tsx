@@ -1,20 +1,18 @@
 import { useState } from 'react';
 
-import cartImg from '@/app/assets/images/Cart.svg';
-import logo from '@/app/assets/images/Logo.svg';
 import { Cart } from '@/entities/cart/view';
-import { Title } from '@/features/ui/title/title';
 
-import { HeaderElement } from './components/ui/headerElement/headerElement';
+import { HeaderElement } from './ui/headerElement/headerElement';
 import styles from './view.module.css';
 import { useAppSelector } from '@/features/store/store';
+import { cartImg, logo, Title } from '@/shared';
 
 export const Header = () => {
   const [active, setActive] = useState<boolean>(false);
-  const amount = useAppSelector(state => state.cart.amount)
+  const amount = useAppSelector(state => state.cart.amount);
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <a href="/" className={styles['header__logo']}>
         <img src={logo} alt="logo" className={styles['header__logo-img']} />
       </a>
@@ -40,6 +38,6 @@ export const Header = () => {
         </button>
       </div>
       {active && <Cart active={active} setActive={setActive} />}
-    </div>
+    </header>
   );
 };

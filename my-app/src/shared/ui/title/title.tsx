@@ -1,5 +1,5 @@
-import { styleClassMap } from './components/constansts';
-import { ITitle } from './components/interfaces';
+import { styleClassMap } from './model/constansts';
+import { ITitle } from './model/interfaces';
 import './title.css';
 
 export const Title = ({ children, style }: ITitle) => {

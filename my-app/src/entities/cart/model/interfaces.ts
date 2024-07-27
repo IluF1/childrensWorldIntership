@@ -10,7 +10,7 @@ export interface ICartData {
     title: string;
     description: string;
     category: string;
-    price: number;
+    price: string;
     picture: string;
     rating: string;
   };

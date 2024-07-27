@@ -1,15 +1,11 @@
-
-.product-page {
-  padding: 20px 50px 0 50px;
-}
-
 .product-page__back {
   color: rgba(0, 115, 230, 1);
   font-weight: 700;
   line-height: 20px;
   cursor: pointer;
   font-size: 20px;
-  position: absolute;
+  width: 50px;
+  margin-bottom: -10px;
 }
 
 .product-page__back-img {
@@ -17,10 +13,14 @@
   margin-right: 10px;
 }
 
+.product-page {
+  padding: 20px 50px 0 50px;
+}
 .product-page__container {
   width: 792px;
   display: block;
-  margin: 0 auto 20px auto;
+
+  margin: -19px auto 20px auto;
 }
 
 .product-page__main {

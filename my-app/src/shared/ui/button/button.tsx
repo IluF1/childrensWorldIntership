@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-import { IButton } from './components/interfaces';
+import { IButton } from './model/interfaces';
 
 export const MyButton = ({ children, onClick }: IButton) => {
   return (

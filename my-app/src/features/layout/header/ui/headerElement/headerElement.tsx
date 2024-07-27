@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { IHeaderElement } from './components/interfaces';
+import { IHeaderElement } from './model/interfaces';
 import styles from './headerElement.module.css';
 
 export const HeaderElement = ({ children, link }: IHeaderElement) => {

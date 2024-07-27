@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-import { Product } from '@/entities/product/view';
-import { currentUrl } from '@/features/utils/constants/constants';
-import { StyledPagination } from '@/pages/home/components/ui/pagination/pagination';
+import { StyledPagination } from '@/pages/home/ui/pagination/pagination';
 
-import { useGetProducts } from './components/hooks/useGetProducts';
-import { useSetParam } from './components/hooks/useSetParams';
+import { useGetProducts } from './model/hooks/useGetProducts';
+import { useSetParam } from './model/hooks/useSetParams';
 import styles from './view.module.css';
+import { currentUrl, Product } from '@/shared';
 
 export const Home = () => {
   const [page, setPage] = useState<number>(
@@ -31,6 +30,8 @@ export const Home = () => {
               title={product.title}
               rating={Number(product.rating)}
               picture={product.picture}
+              description={''}
+              category={''}
             />
           </li>
         ))}

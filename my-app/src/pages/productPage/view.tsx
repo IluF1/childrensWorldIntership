@@ -1,36 +1,42 @@
 import { Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import arrowLeft from '@/app/assets/images/Arrow Left.svg';
-import noneStar from '@/app/assets/images/Fillness=None.svg';
-import star from '@/app/assets/images/Star.svg';
-import undoImg from '@/app/assets/images/Undo.svg';
-import { MyButton } from '@/features/ui/button/button';
-import { Title } from '@/features/ui/title/title';
-import { formatPrice } from '@/features/utils/helpers/formatPrice';
-
-import { productId } from './components/helpers/constants';
-import { useGetProductById } from './components/hooks/useGetProductById';
+import { productId } from './model/helpers/constants';
+import { useGetProductById } from './model/hooks/useGetProductById';
 import styles from './view.module.css';
 import { useAppDispatch } from '@/features/store/store';
-import { addItemToCart } from '@/features/store/slices/cart.slice';
-
+import { addItemToCart } from '@/features/store/api';
+import {
+  arrowLeft,
+  formatPrice,
+  IData,
+  MyButton,
+  noneStar,
+  star,
+  Title,
+  undoImg,
+} from '@/shared';
 
 export const ProductPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { card } = useGetProductById(Number(productId));
-  const dispatch = useAppDispatch()
+
   if (!card) {
-    return <div></div>
+    return <div></div>;
   }
-  const handleAddToCart = () => {
-    const item = {
+
+  const item: IData = {
+    data: {
+      id: card.id,
       quantity: 1,
-      id: card.id
-    };
+    },
+  };
+
+  const handler = () => {
     dispatch(addItemToCart(item));
   };
-  
+
   return (
     <div className={styles['product-page']}>
       <a className={styles['product-page__back']} onClick={() => navigate(-1)}>
@@ -58,12 +64,10 @@ export const ProductPage = () => {
               className={styles['product-page__rating']}
             />
             <div className={styles['product-page__price']}>
-              <Title style="bigPrice">
-                {formatPrice(Number(card?.price))}
-              </Title>
+              <Title style="bigPrice">{formatPrice(Number(card?.price))}</Title>
             </div>
             <div className={styles['product-page__add-to-cart-btn']}>
-              <MyButton onClick={handleAddToCart}>Добавить в корзину</MyButton>
+              <MyButton onClick={handler}>Добавить в корзину</MyButton>
             </div>
             <div className={styles['product-page__return-condition']}>
               <Title style="bold">
@@ -87,7 +91,6 @@ export const ProductPage = () => {
         </div>
         <div className={styles['product-page__description']}>
           <Title style="bold">Описание</Title>
-
           <div
             className={styles['product-page__description-text']}
             dangerouslySetInnerHTML={{
