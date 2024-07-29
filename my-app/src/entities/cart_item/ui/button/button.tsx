@@ -1,7 +1,9 @@
-import { minus, plus } from '@/shared';
-import styles from './button.module.css';
-import { Title } from '@/shared/ui/title/title';
 import { useState } from 'react';
+
+import { minus, plus } from '@/shared';
+import { Title } from '@/shared/ui/title/title';
+
+import styles from './button.module.css';
 
 export const CartButton = () => {
   const [count, setCount] = useState<number>(1);

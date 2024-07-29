@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
 import { cartReducer } from '../entities/cart/model/slice/cart.slice';
 
 const rootReducer = combineReducers({

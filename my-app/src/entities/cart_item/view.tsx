@@ -1,7 +1,8 @@
-import { ICartItem } from './model/interfaces';
-import styles from './view.module.css';
-import { CartButton } from './ui/button/button';
 import { formatPrice, Title } from '@/shared';
+
+import { ICartItem } from './model/interfaces';
+import { CartButton } from './ui/button/button';
+import styles from './view.module.css';
 
 export const CartItem = ({ title, img, price, id }: ICartItem) => {
   return (

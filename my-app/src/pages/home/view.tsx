@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import { StyledPagination } from '@/pages/home/ui/pagination/pagination';
+import { currentUrl, Product } from '@/shared';
 
 import { useGetProducts } from './model/hooks/useGetProducts';
 import { useSetParam } from './model/hooks/useSetParams';
 import styles from './view.module.css';
-import { currentUrl, Product } from '@/shared';
 
 export const Home = () => {
   const [page, setPage] = useState<number>(

@@ -1,7 +1,6 @@
 import { Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@/app/store';
 import { updateCart } from '@/entities/cart/model/api/api';
 import { addItem } from '@/entities/cart/model/slice/cart.slice';
 import {
@@ -12,6 +11,8 @@ import {
   star,
   Title,
   undoImg,
+  useAppDispatch,
+  useAppSelector,
 } from '@/shared';
 
 import { productId } from './model/helpers/constants';

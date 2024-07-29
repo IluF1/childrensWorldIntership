@@ -19,3 +19,4 @@ export { default as minus } from '@/app/assets/images/Minus.svg';
 
 export { default as cartImg } from '@/app/assets/images/Cart.svg';
 export { default as logo } from '@/app/assets/images/Logo.svg';
+export { useAppSelector, useAppDispatch } from '@/app/store';
