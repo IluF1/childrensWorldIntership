@@ -18,7 +18,7 @@ export const Cart = ({ active, setActive }: ICart) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsScrollable(window.innerHeight < 950);
+      setIsScrollable(window.innerHeight < 1000);
     };
 
     window.addEventListener('resize', handleResize);
