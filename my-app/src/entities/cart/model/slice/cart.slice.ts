@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchCartData, addItemToCart } from '../api/api';
+
+import { fetchCartData, updateCart } from '@/entities/cart/model/api/api';
 import { ICartData } from '@/entities/cart/model/interfaces';
 
 export interface IInitialState {
@@ -15,46 +16,53 @@ const initialState: IInitialState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    addItem: (state, action: PayloadAction<ICartData>) => {
+      const itemExists = state.cart.find(
+        item => item.product.id === action.payload.product.id,
+      );
+      if (itemExists) {
+        itemExists.quantity += action.payload.quantity;
+      } else {
+        state.cart.push(action.payload);
+      }
+      state.amount = state.cart.reduce((acc, item) => acc + item.quantity, 0);
+    },
+    setCart: (state, action: PayloadAction<ICartData[]>) => {
+      state.cart = action.payload;
+      state.amount = state.cart.reduce((acc, item) => acc + item.quantity, 0);
+    },
+  },
   extraReducers: builder => {
-    builder.addCase(
-      fetchCartData.fulfilled,
-      (state, action: PayloadAction<ICartData[]>) => {
-        state.cart = action.payload;
-        state.amount = action.payload.length;
-      },
-    );
-    builder.addCase(fetchCartData.rejected, (_state, action) => {
-      console.error('Error loading cart data:', action.payload);
-    });
-
-    builder.addCase(
-      addItemToCart.fulfilled,
-      (state, action: PayloadAction<ICartData[] | undefined>) => {
-        if (action.payload) {
-          const newItems = action.payload;
-          newItems.forEach(addedItem => {
-            const existingItemIndex = state.cart.findIndex(
-              item => item.product.id === addedItem.product.id,
-            );
-
-            if (existingItemIndex !== -1) {
-              state.cart[existingItemIndex].quantity += addedItem.quantity;
-            } else {
-              state.cart.push(addedItem);
-            }
-          });
-
-          state.amount = state.cart.length;
-        } else {
-          console.error('Empty payload or unexpected format:', action.payload);
-        }
-      },
-    );
-    builder.addCase(addItemToCart.rejected, (_state, action) => {
-      console.error('Error adding item to cart:', action.payload);
-    });
+    builder
+      .addCase(
+        fetchCartData.fulfilled,
+        (state, action: PayloadAction<ICartData[]>) => {
+          state.cart = action.payload;
+          state.amount = state.cart.reduce(
+            (acc, item) => acc + item.quantity,
+            0,
+          );
+        },
+      )
+      .addCase(fetchCartData.rejected, (_state, action) => {
+        console.error('Ошибка при загрузке данных корзины:', action.payload);
+      })
+      .addCase(
+        updateCart.fulfilled,
+        (state, action: PayloadAction<ICartData[]>) => {
+          state.cart = action.payload;
+          state.amount = state.cart.reduce(
+            (acc, item) => acc + item.quantity,
+            0,
+          );
+        },
+      )
+      .addCase(updateCart.rejected, (_state, action) => {
+        console.error('Ошибка при обновлении корзины:', action.payload);
+      });
   },
 });
 
+export const { addItem, setCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

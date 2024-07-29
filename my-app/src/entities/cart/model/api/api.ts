@@ -1,42 +1,42 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ICartData } from '@/entities/cart/model/interfaces';
-import { IData } from '@/shared';
 
-export const fetchCartData = createAsyncThunk<ICartData[]>(
-  'cart/data',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        'https://skillfactory-task.detmir.team/cart',
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching cart data:', error);
-      return rejectWithValue('Failed to fetch cart data');
-    }
-  },
-);
+import { ICartData } from '../interfaces';
 
-export const addItemToCart = createAsyncThunk<ICartData[] | undefined, IData>(
-  'cart/add',
-  async (item: IData, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        'https://skillfactory-task.detmir.team/cart/update',
-        {
-          data: [
-            {
-              id: item.data.id,
-              quantity: 1,
-            },
-          ],
-        },
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error adding item to cart:', error);
-      return rejectWithValue('Failed to add item to cart');
-    }
-  },
-);
+export const fetchCartData = createAsyncThunk<
+  ICartData[],
+  void,
+  { rejectValue: string }
+>('cart/fetchData', async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(
+      'https://skillfactory-task.detmir.team/cart',
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при получении данных корзины:', error);
+    return rejectWithValue('Не удалось получить данные корзины');
+  }
+});
+
+export const updateCart = createAsyncThunk<
+  ICartData[],
+  ICartData[],
+  { rejectValue: string }
+>('cart/updateCart', async (cartItems, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(
+      'https://skillfactory-task.detmir.team/cart/update',
+      {
+        data: cartItems.map(item => ({
+          id: item.product.id,
+          quantity: item.quantity,
+        })),
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при обновлении корзины:', error);
+    return rejectWithValue('Не удалось обновить корзину');
+  }
+});

@@ -1,15 +1,12 @@
 import { Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { productId } from './model/helpers/constants';
-import { useGetProductById } from './model/hooks/useGetProductById';
-import styles from './view.module.css';
-import { useAppDispatch } from '@/app/store';
-import { addItemToCart } from '@/entities/cart/model/api/api';
+import { useAppDispatch, useAppSelector } from '@/app/store';
+import { updateCart } from '@/entities/cart/model/api/api';
+import { addItem } from '@/entities/cart/model/slice/cart.slice';
 import {
   arrowLeft,
   formatPrice,
-  IData,
   MyButton,
   noneStar,
   star,
@@ -17,24 +14,36 @@ import {
   undoImg,
 } from '@/shared';
 
+import { productId } from './model/helpers/constants';
+import { useGetProductById } from './model/hooks/useGetProductById';
+import styles from './view.module.css';
+
 export const ProductPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { card } = useGetProductById(Number(productId));
+  const cartItems = useAppSelector(state => state.cart.cart);
 
   if (!card) {
     return <div></div>;
   }
 
-  const item: IData = {
-    data: {
-      id: card.id,
-      quantity: 1,
-    },
-  };
-
   const handler = () => {
-    dispatch(addItemToCart(item));
+    const newItem = {
+      product: {
+        id: card.id,
+        title: card.title,
+        description: card.description,
+        category: card.category,
+        price: card.price,
+        picture: card.picture,
+        rating: card.rating,
+      },
+      quantity: 1,
+    };
+
+    dispatch(addItem(newItem));
+    dispatch(updateCart([...cartItems, newItem]));
   };
 
   return (

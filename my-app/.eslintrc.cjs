@@ -41,12 +41,14 @@ module.exports = {
           },
         ],
         pathGroupsExcludedImportTypes: ['react'],
-        'newlines-between': 'always',
+        'newlines-between': 'always', 
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
         },
       },
     ],
+    'import/first': 'error', 
+    'import/newline-after-import': ['error', { count: 1 }],
   },
 };

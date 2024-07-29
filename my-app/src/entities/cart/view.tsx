@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Box, Modal } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '@/app/store';
@@ -14,13 +16,16 @@ export const Cart = ({ active, setActive }: ICart) => {
 
   const data = useAppSelector(state => state.cart.cart);
   const dispatch = useAppDispatch();
-  dispatch(fetchCartData());
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   if (!data || data.length === 0) {
     return (
       <Modal open={active} onClose={handleClose} className={styles.modal}>
         <Box sx={style}>
-          <div>No items in the cart</div>
+          <div>Ваша корзина пуста</div>
         </Box>
       </Modal>
     );
@@ -29,40 +34,42 @@ export const Cart = ({ active, setActive }: ICart) => {
   const totalPrice = data.reduce((acc, item) => {
     if (item && item.product) {
       const price = Number(item.product.price);
-      return !isNaN(price) ? acc + price : acc;
+      return !isNaN(price) ? acc + price * item.quantity : acc;
     }
     return acc;
   }, 0);
 
   return (
-    <div>
-      <Modal open={active} onClose={handleClose} className={styles.modal}>
-        <Box sx={style}>
-          <div>
-            <ul>
-              {data.map(item => (
-                <li key={item.product.id}>
-                  <CartItem
-                    title={item.product.title}
-                    img={item.product.picture}
-                    price={item.product.price}
-                    id={item.product.id}
-                  />
-                </li>
-              ))}
-            </ul>
-            <div className={styles['cart__amount-total']}>
-              <div className={styles.cart__total}>
-                <h2 className={styles['cart__total-text']}>Итого</h2>
-                <div className={styles['cart__total-price']}>
-                  <Title style="bigPrice">{formatPrice(totalPrice)}</Title>
-                </div>
-              </div>
-              <MyButton children="Оформить заказ" />
+    <Modal open={active} onClose={handleClose} className={styles.modal}>
+      <Box sx={style}>
+        <ul>
+          {data.map(item =>
+            item.product ? (
+              <li key={item.product.id}>
+                <CartItem
+                  title={item.product.title}
+                  img={item.product.picture}
+                  price={item.product.price}
+                  id={item.product.id}
+                />
+              </li>
+            ) : (
+              <li className={styles['cart-item-error']}>
+                Ошибка данных товара
+              </li>
+            ),
+          )}
+        </ul>
+        <div className={styles['cart__amount-total']}>
+          <div className={styles.cart__total}>
+            <h2 className={styles['cart__total-text']}>Итого</h2>
+            <div className={styles['cart__total-price']}>
+              <Title style="bigPrice">{formatPrice(totalPrice)}</Title>
             </div>
           </div>
-        </Box>
-      </Modal>
-    </div>
+          <MyButton children="Оформить заказ" />
+        </div>
+      </Box>
+    </Modal>
   );
 };
