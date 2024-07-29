@@ -1,5 +1,3 @@
-
-
 import { Box, Modal } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '@/app/store';
@@ -27,9 +25,6 @@ export const Cart = ({ active, setActive }: ICart) => {
       </Modal>
     );
   }
-
-
-
 
   const totalPrice = data.reduce((acc, item) => {
     if (item && item.product) {

@@ -32,7 +32,6 @@ const cartSlice = createSlice({
       addItemToCart.fulfilled,
       (state, action: PayloadAction<ICartData[] | undefined>) => {
         if (action.payload) {
-          // Обновите состояние корзины, добавив новые элементы
           const newItems = action.payload;
           newItems.forEach(addedItem => {
             const existingItemIndex = state.cart.findIndex(
@@ -40,15 +39,12 @@ const cartSlice = createSlice({
             );
 
             if (existingItemIndex !== -1) {
-              // Если элемент уже существует, обновите количество
               state.cart[existingItemIndex].quantity += addedItem.quantity;
             } else {
-              // Если элемент новый, добавьте его
               state.cart.push(addedItem);
             }
           });
 
-          // Пересчитать количество элементов в корзине
           state.amount = state.cart.length;
         } else {
           console.error('Empty payload or unexpected format:', action.payload);
