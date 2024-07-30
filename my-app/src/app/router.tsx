@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { fetchCartData } from '@/entities/cart/model/api/api';
+import { useAppDispatch } from './store';
+import { fetchCartData } from '@/features/cart/model/api/api';
 import { Home } from '@/pages/home/view';
 import { ProductPage } from '@/pages/productPage/view';
 
-import { useAppDispatch } from './store';
 
 export function ReactRouter() {
   const dispatch = useAppDispatch();

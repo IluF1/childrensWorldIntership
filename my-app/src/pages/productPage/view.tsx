@@ -1,8 +1,11 @@
 import { Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { updateCart } from '@/entities/cart/model/api/api';
-import { addItem } from '@/entities/cart/model/slice/cart.slice';
+import { productId } from './model/helpers/constants';
+import { useGetProductById } from './model/hooks/useGetProductById';
+import styles from './view.module.css';
+import { updateCart } from '@/features/cart/model/api/api';
+import { addItem } from '@/features/cart/model/slice/cart.slice';
 import {
   arrowLeft,
   formatPrice,
@@ -15,9 +18,6 @@ import {
   useAppSelector,
 } from '@/shared';
 
-import { productId } from './model/helpers/constants';
-import { useGetProductById } from './model/hooks/useGetProductById';
-import styles from './view.module.css';
 
 export const ProductPage = () => {
   const navigate = useNavigate();

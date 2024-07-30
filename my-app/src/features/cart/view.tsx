@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { Box, Modal } from '@mui/material';
 
-import { formatPrice, MyButton, Title, useAppSelector } from '@/shared';
 
 import { getDynamicStyle } from './model/constants';
 import { ICart } from './model/interfaces';
 import styles from './view.module.css';
-import { CartItem } from '../cart_item/view';
+import { CartItem, formatPrice, MyButton, Title, useAppSelector } from '@/shared';
 
 export const Cart = ({ active, setActive }: ICart) => {
   const [isScrollable, setIsScrollable] = useState(window.innerHeight < 600);

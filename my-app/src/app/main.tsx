@@ -6,10 +6,10 @@ import './assets/styles/index.css';
 
 import { Provider } from 'react-redux';
 
-import { Store } from '@/app/store';
-import { Header } from '@/features/layout/header/view';
-
 import { ReactRouter } from './router';
+import { Store } from '@/app/store';
+import { Header } from '@/shared';
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

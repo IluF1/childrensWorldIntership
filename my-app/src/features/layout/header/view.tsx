@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { Cart } from '@/entities/cart/view';
-import { cartImg, logo, Title, useAppSelector } from '@/shared';
-
 import { HeaderElement } from './ui/headerElement/headerElement';
 import styles from './view.module.css';
+import { Cart } from '@/features/cart/view';
+import { cartImg, logo, Title, useAppSelector } from '@/shared';
+
 
 export const Header = () => {
   const [active, setActive] = useState<boolean>(false);
