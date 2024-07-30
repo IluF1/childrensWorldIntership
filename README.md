@@ -32,3 +32,16 @@ yarn
 ```sh
 yarn run dev
 ```
+
+# Using Docker
+To run the project with Docker:
+
+Build the Docker image:
+
+```sh
+docker build -t my-app .
+```
+Run the docker container
+```sh
+docker run -p 5173:5173 my-app
+```
