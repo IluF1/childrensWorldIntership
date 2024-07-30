@@ -13,22 +13,15 @@
            <img src = "https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" alt="materialUi"/>
 </p>
 
-## Install
+# Using Docker
+To run the project with Docker:
 
-To get started:
+Build the Docker image:
 
-1. Clone the repository:
 ```sh
-git clone https://github.com/IluF1/children-sWorldInternship.git
-cd my-app
+docker build -t my-app .
 ```
-
-2. Install all dependencies in the project:
+Run the docker container
 ```sh
-yarn
-```
-
-3. Run project:
-```sh
-yarn run dev
+docker run -p 5173:5173 my-app
 ```
