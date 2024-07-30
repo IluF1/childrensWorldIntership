@@ -29,8 +29,8 @@ export const Home = () => {
                             title={product.title}
                             rating={Number(product.rating)}
                             picture={product.picture}
-                            description={''}
-                            category={''}
+                            description=''
+                            category=''
                         />
                     </li>
                 ))}

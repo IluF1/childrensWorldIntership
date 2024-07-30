@@ -4,11 +4,12 @@ import {IProduct, Title, formatPrice, noneStar, star} from '@/shared';
 
 import styles from './view.module.css';
 
+
 export const Product = ({title, price, picture, rating, id}: IProduct) => {
     return (
         <a href={`/product/${id}`}>
             <div className={styles.product}>
-                <img src={picture} alt={title} className={styles.product__img} />
+                <img src={picture} alt={title} className={styles.product__img} loading="lazy" />
                 <Title style="name" children={title} />
                 <Rating
                     value={rating}

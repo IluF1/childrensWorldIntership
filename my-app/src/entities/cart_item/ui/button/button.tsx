@@ -14,14 +14,14 @@ export const CartButton = () => {
         onClick={() => (count === 0 ? null : setCount(count - 1))}
         className={styles.button__minus}
       >
-        <img src={minus} alt="minus" />
+        <img src={minus} alt="minus" loading='lazy'/>
       </button>
       <Title children={count} style="bold" />
       <button
         onClick={() => setCount(count + 1)}
         className={styles.button__plus}
       >
-        <img src={plus} alt="plus" />
+        <img src={plus} alt="plus" loading='lazy'/>
       </button>
     </div>
   );

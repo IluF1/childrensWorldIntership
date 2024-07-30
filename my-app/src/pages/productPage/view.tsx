@@ -51,7 +51,7 @@ export const ProductPage = () => {
     return (
         <div className={styles['product-page']}>
             <a className={styles['product-page__back']} onClick={() => navigate(-1)}>
-                <img src={arrowLeft} alt="back" className={styles['product-page__back-img']} />
+                <img src={arrowLeft} alt="back" className={styles['product-page__back-img']} loading='lazy' />
                 Назад
             </a>
             <div className={styles['product-page__container']}>
@@ -60,6 +60,7 @@ export const ProductPage = () => {
                         src={card?.picture}
                         alt={card?.title}
                         className={styles['product-page__picture']}
+                        loading='lazy'
                     />
                     <div className={styles['product-page__information']}>
                         <Title style="bigName">{card?.title}</Title>
@@ -82,6 +83,7 @@ export const ProductPage = () => {
                                     src={undoImg}
                                     alt="img"
                                     className={styles['product-page__return-condition-img']}
+                                    loading='lazy'
                                 />
                                 Условие возврата
                             </Title>

@@ -1,8 +1,6 @@
-import {useEffect, useState} from 'react';
-
 import {Box, Modal} from '@mui/material';
 
-import {getDynamicStyle} from './model/constants';
+import {baseStyle} from './model/constants';
 import {ICart} from './model/interfaces';
 
 import {CartItem, MyButton, Title, formatPrice, useAppSelector} from '@/shared';
@@ -10,27 +8,14 @@ import {CartItem, MyButton, Title, formatPrice, useAppSelector} from '@/shared';
 import styles from './view.module.css';
 
 export const Cart = ({active, setActive}: ICart) => {
-    const [isScrollable, setIsScrollable] = useState(window.innerHeight < 600);
-
     const handleClose = () => setActive(false);
 
     const data = useAppSelector((state) => state.cart.cart);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsScrollable(window.innerHeight < 1000);
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
     if (!data || data.length === 0) {
         return (
             <Modal open={active} onClose={handleClose} className={styles.modal}>
-                <Box sx={getDynamicStyle(isScrollable)}>
+                <Box sx={baseStyle}>
                     <div>Ваша корзина пуста</div>
                 </Box>
             </Modal>
@@ -47,7 +32,7 @@ export const Cart = ({active, setActive}: ICart) => {
 
     return (
         <Modal open={active} onClose={handleClose} className={styles.modal}>
-            <Box sx={getDynamicStyle(isScrollable)}>
+            <Box sx={baseStyle}>
                 <ul>
                     {data.map((item) =>
                         item.product ? (
