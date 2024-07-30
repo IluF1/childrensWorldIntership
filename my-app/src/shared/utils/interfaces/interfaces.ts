@@ -1,19 +1,19 @@
-import { ICartData } from '@/entities/cart/model/interfaces';
+import {ICartData} from '@/features/cart/model/interfaces';
 
 export interface IData {
-  quantity: number;
-  id: string;
+    quantity: number;
+    id: string;
 }
 export interface IInitialState {
-  cart: ICartData[];
-  amount: number;
+    cart: ICartData[];
+    amount: number;
 }
 export interface IProduct {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  picture: string;
-  rating: number;
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    price: number;
+    picture: string;
+    rating: number;
 }
