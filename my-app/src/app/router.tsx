@@ -1,26 +1,26 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 
-import { useAppDispatch } from './store';
-import { fetchCartData } from '@/features/cart/model/api/api';
-import { Home } from '@/pages/home/view';
-import { ProductPage } from '@/pages/productPage/view';
+import {useAppDispatch} from './store';
 
+import {fetchCartData} from '@/features/cart/model/api/api';
+import {Home} from '@/pages/home/view';
+import {ProductPage} from '@/pages/productPage/view';
 
 export function ReactRouter() {
-  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchCartData());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchCartData());
+    }, [dispatch]);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </Router>
+    );
 }

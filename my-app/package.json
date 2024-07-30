@@ -13,6 +13,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@gravity-ui/eslint-config": "^3.2.0",
+    "@gravity-ui/prettier-config": "^1.1.0",
     "@mui/material": "^5.16.1",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@reduxjs/toolkit": "^2.2.6",
