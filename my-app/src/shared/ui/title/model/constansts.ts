@@ -13,4 +13,5 @@ export const styleClassMap: {[key: string]: string} = {
     bigName: 'bigName-title',
     bigPrice: 'bigPrice-title',
     description: 'description-title',
+    red: 'red-title',
 };

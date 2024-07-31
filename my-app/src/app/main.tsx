@@ -10,13 +10,15 @@ import {Provider} from 'react-redux';
 import {ReactRouter} from './router';
 
 import {Store} from '@/app/store';
+import {ProductTotalProvider} from '@/entities/cart_item/ui/button/model/context';
 import {Header} from '@/shared';
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+    <ProductTotalProvider>
         <Provider store={Store}>
             <Header />
             <ReactRouter />
         </Provider>
-    </React.StrictMode>,
+    </ProductTotalProvider>,
 );

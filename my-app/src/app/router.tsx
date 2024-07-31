@@ -8,6 +8,7 @@ import {fetchCartData} from '@/features/cart/model/api/api';
 import {Home} from '@/pages/home/view';
 import {ProductPage} from '@/pages/productPage/view';
 
+// eslint-disable-next-line no-implicit-globals
 export function ReactRouter() {
     const dispatch = useAppDispatch();
 

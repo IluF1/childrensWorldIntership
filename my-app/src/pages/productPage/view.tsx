@@ -5,8 +5,10 @@ import {productId} from './model/helpers/constants';
 import {useGetProductById} from './model/hooks/useGetProductById';
 
 import {updateCart} from '@/features/cart/model/api/api';
+import {ICartData} from '@/features/cart/model/interfaces';
 import {addItem} from '@/features/cart/model/slice/cart.slice';
 import {
+    CartButton,
     MyButton,
     Title,
     arrowLeft,
@@ -30,28 +32,39 @@ export const ProductPage = () => {
         return <div></div>;
     }
 
+    const existingItem = cartItems.find((item) => item.product.id === card.id);
     const handler = () => {
-        const newItem = {
+        const newItem: ICartData = {
             product: {
                 id: card.id,
                 title: card.title,
                 description: card.description,
                 category: card.category,
-                price: card.price,
+                price: String(card.price),
                 picture: card.picture,
-                rating: card.rating,
+                rating: String(card.rating),
             },
             quantity: 1,
         };
 
+        let updatedCart: ICartData[];
+        if (!existingItem) {
+            updatedCart = [...cartItems, newItem];
+        }
+
         dispatch(addItem(newItem));
-        dispatch(updateCart([...cartItems, newItem]));
+        dispatch(updateCart(updatedCart));
     };
 
     return (
         <div className={styles['product-page']}>
             <a className={styles['product-page__back']} onClick={() => navigate(-1)}>
-                <img src={arrowLeft} alt="back" className={styles['product-page__back-img']} loading='lazy' />
+                <img
+                    src={arrowLeft}
+                    alt="back"
+                    className={styles['product-page__back-img']}
+                    loading="lazy"
+                />
                 Назад
             </a>
             <div className={styles['product-page__container']}>
@@ -60,7 +73,7 @@ export const ProductPage = () => {
                         src={card?.picture}
                         alt={card?.title}
                         className={styles['product-page__picture']}
-                        loading='lazy'
+                        loading="lazy"
                     />
                     <div className={styles['product-page__information']}>
                         <Title style="bigName">{card?.title}</Title>
@@ -74,16 +87,24 @@ export const ProductPage = () => {
                         <div className={styles['product-page__price']}>
                             <Title style="bigPrice">{formatPrice(Number(card?.price))}</Title>
                         </div>
-                        <div className={styles['product-page__add-to-cart-btn']}>
-                            <MyButton onClick={handler}>Добавить в корзину</MyButton>
-                        </div>
+
+                        {!existingItem ? (
+                            <div className={styles['product-page__add-to-cart-btn']}>
+                                <MyButton onClick={handler}>Добавить в корзину</MyButton>
+                            </div>
+                        ) : (
+                            <div className={styles['product-page__checkout']}>
+                                <CartButton productId={Number(card.id)} />
+                                <MyButton children="Оформить заказ" />
+                            </div>
+                        )}
                         <div className={styles['product-page__return-condition']}>
                             <Title style="bold">
                                 <img
                                     src={undoImg}
                                     alt="img"
                                     className={styles['product-page__return-condition-img']}
-                                    loading='lazy'
+                                    loading="lazy"
                                 />
                                 Условие возврата
                             </Title>

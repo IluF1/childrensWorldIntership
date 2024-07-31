@@ -1,6 +1,8 @@
-import { stylesTitle } from './constansts';
+import {ReactNode} from 'react';
+
+import {StylesTitle} from './constansts';
 
 export interface ITitle {
-  style: stylesTitle;
-  children: any;
+    style: StylesTitle;
+    children: string | Element | ReactNode;
 }

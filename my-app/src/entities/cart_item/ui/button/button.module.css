@@ -1,8 +1,8 @@
 .button {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 156px;
-    height: 40px;
+    width: 126px;
+    height: 20px;
     text-align: center;
     background-color:  #E6F1FC;
     padding: 16px;

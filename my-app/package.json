@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky",
-    "knip": "knip"
+    "knip": "knip",
+    "lint:css": "stylelint '**/*.css' --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -33,6 +34,7 @@
     "stylelint-prettier": "^5.0.2"
   },
   "devDependencies": {
+    "@gravity-ui/stylelint-config": "^4.0.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^18.3.3",
@@ -50,6 +52,7 @@
     "husky": "^9.0.11",
     "knip": "^5.27.0",
     "lint-staged": "^15.2.7",
+    "postcss": "^8.4.40",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^36.0.1",
@@ -58,9 +61,10 @@
     "vite-plugin-svgr": "^4.2.0"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,css}": [
+    "src/**/*.{ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "stylelint --fix"
     ]
   }
 }

@@ -90,3 +90,8 @@
   margin-top: 10px;
   padding-bottom: 60px;
 }
+.product-page__checkout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 20px;
+}

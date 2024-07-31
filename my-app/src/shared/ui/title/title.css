@@ -18,6 +18,11 @@
   font-size: 22px;
   line-height: 32px;
 }
+.red-title {
+  font-weight: 700;
+  line-height: 20px;
+  color: red;
+}
 .bigName-title {
   font-size: 28px;
   font-weight: 700;
