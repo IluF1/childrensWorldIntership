@@ -1,7 +1,29 @@
-import {styleClassMap} from './model/constansts';
-import {ITitle} from './model/interfaces';
-
 import './title.css';
+
+export type StylesTitle =
+    | 'name'
+    | 'red'
+    | 'bold'
+    | 'bigName'
+    | 'price'
+    | 'bigPrice'
+    | 'description';
+
+export const styleClassMap: {[key: string]: string} = {
+    bold: 'bold-title',
+    name: 'name-title',
+    price: 'price-title',
+    bigName: 'bigName-title',
+    bigPrice: 'bigPrice-title',
+    description: 'description-title',
+    red: 'red-title',
+};
+
+export interface ITitle {
+    style: StylesTitle;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children: any;
+}
 
 export const Title = ({children, style}: ITitle) => {
     const classNames = ['title'];

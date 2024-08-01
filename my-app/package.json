@@ -9,8 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky",
-    "knip": "knip",
-    "lint:css": "stylelint '**/*.css' --fix"
+    "lint:css": "stylelint 'src/**/*.css' --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -50,7 +49,6 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.8",
     "husky": "^9.0.11",
-    "knip": "^5.27.0",
     "lint-staged": "^15.2.7",
     "postcss": "^8.4.40",
     "stylelint-config-prettier": "^9.0.5",

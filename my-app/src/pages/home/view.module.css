@@ -4,6 +4,9 @@
   grid-template-columns: repeat(5, auto);
   gap: 30px;
 }
+.home {
+  margin-top: 20px;
+}
 
 .home__pagination {
   display: flex;

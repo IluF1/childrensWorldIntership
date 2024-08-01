@@ -1,4 +1,0 @@
-{
-  "entry": ["index.{js,ts,tsx,jsx}", "src/index.{js,ts,tsx,jsx}"],
-  "project": ["**/*.{js,ts, tsx}"]
-}

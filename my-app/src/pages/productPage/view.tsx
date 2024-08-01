@@ -1,12 +1,13 @@
+import {memo} from 'react';
+
 import {Rating} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
 import {productId} from './model/helpers/constants';
-import {useGetProductById} from './model/hooks/useGetProductById';
 
-import {updateCart} from '@/features/cart/model/api/api';
-import {ICartData} from '@/features/cart/model/interfaces';
-import {addItem} from '@/features/cart/model/slice/cart.slice';
+import {updateCart} from '@/features/api/api';
+import {useGetProductById} from '@/features/hooks/useGetProductById';
+import {addItem} from '@/features/slice/cart.slice';
 import {
     CartButton,
     MyButton,
@@ -19,10 +20,11 @@ import {
     useAppDispatch,
     useAppSelector,
 } from '@/shared';
+import {ICartData} from '@/widgets/cart/model/helpers/interfaces';
 
 import styles from './view.module.css';
 
-export const ProductPage = () => {
+const ProductPage = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {card} = useGetProductById(Number(productId));
@@ -47,7 +49,7 @@ export const ProductPage = () => {
             quantity: 1,
         };
 
-        let updatedCart: ICartData[];
+        let updatedCart: ICartData[] = [];
         if (!existingItem) {
             updatedCart = [...cartItems, newItem];
         }
@@ -88,14 +90,14 @@ export const ProductPage = () => {
                             <Title style="bigPrice">{formatPrice(Number(card?.price))}</Title>
                         </div>
 
-                        {!existingItem ? (
-                            <div className={styles['product-page__add-to-cart-btn']}>
-                                <MyButton onClick={handler}>Добавить в корзину</MyButton>
-                            </div>
-                        ) : (
+                        {existingItem ? (
                             <div className={styles['product-page__checkout']}>
                                 <CartButton productId={Number(card.id)} />
                                 <MyButton children="Оформить заказ" />
+                            </div>
+                        ) : (
+                            <div className={styles['product-page__add-to-cart-btn']}>
+                                <MyButton onClick={handler}>Добавить в корзину</MyButton>
                             </div>
                         )}
                         <div className={styles['product-page__return-condition']}>
@@ -131,3 +133,5 @@ export const ProductPage = () => {
         </div>
     );
 };
+
+export default memo(ProductPage);

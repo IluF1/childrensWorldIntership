@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
-import {useGetProducts} from './model/hooks/useGetProducts';
-import {useSetParam} from './model/hooks/useSetParams';
+import {useGetProducts} from '../../features/hooks/useGetProducts';
+import {useSetParam} from '../../features/hooks/useSetParams';
 
 import {StyledPagination} from '@/pages/home/ui/pagination/pagination';
 import {Product, currentUrl} from '@/shared';
@@ -29,8 +29,8 @@ export const Home = () => {
                             title={product.title}
                             rating={Number(product.rating)}
                             picture={product.picture}
-                            description=''
-                            category=''
+                            description=""
+                            category=""
                         />
                     </li>
                 ))}

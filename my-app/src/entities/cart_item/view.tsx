@@ -1,7 +1,8 @@
-import {CartButton} from './ui/button/button';
-import {useProductTotal} from './ui/button/model/context';
+import {CartButton} from '../../shared/ui/counterButton/button';
+import {useProductTotal} from '../../shared/ui/counterButton/model/context';
 
-import {Title, formatPrice, trash} from '@/shared';
+import {updateCart} from '@/features/api/api';
+import {Title, formatPrice, trash, useAppDispatch, useAppSelector} from '@/shared';
 
 import styles from './view.module.css';
 
@@ -16,6 +17,14 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
     const {cartItems} = useProductTotal();
     const item = cartItems.find((item) => item.id === Number(id));
     const count = item ? item.count : 1;
+    const products = useAppSelector((state) => state.cart.cart);
+    const dispatch = useAppDispatch();
+
+    const removeItemFromCart = () => {
+        const newItems = products.filter((item) => item.product.id !== id);
+        dispatch(updateCart(newItems));
+    };
+
     return (
         <div className={styles['cart-item']}>
             <div className={styles.content}>
@@ -36,10 +45,12 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
 
                 <div className={styles['cart-item__price']}>
                     {count === 0 ? (
-                        <Title style="red">
-                            <img src={trash} alt="trash" className={styles.trash_img} />
-                            Удалить
-                        </Title>
+                        <button onClick={removeItemFromCart}>
+                            <Title style="red">
+                                <img src={trash} alt="trash" className={styles.trash_img} />
+                                Удалить
+                            </Title>
+                        </button>
                     ) : (
                         <Title style="price">{formatPrice(price * Number(count))}</Title>
                     )}
