@@ -2,14 +2,10 @@ import {Title} from '@/shared';
 
 import styles from './order.module.css';
 
-interface IPictures {
-    path: string;
-}
-
 interface IOrder {
     created?: string;
     amount?: number;
-    pictures: IPictures[];
+    pictures: string;
     id?: number;
 }
 
@@ -20,15 +16,11 @@ export const Order = ({created, amount, pictures, id}: IOrder) => (
             <Title children={String(id)} style={'bold'} />
         </div>
         <div>
-            {pictures.map((item, index) => (
-                <div key={index}>
-                    <img src={item.path} alt={`order-${id}-image-${index}`} />
-                </div>
-            ))}
+            <img src={pictures} className={styles.order__pictures} />
         </div>
         <div>
             <span>{created}</span>
-            <span>{amount}</span>
+            <span>{String(amount)}</span>
         </div>
     </div>
 );

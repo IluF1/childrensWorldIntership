@@ -17,6 +17,7 @@ export const Product = ({title, price, picture, rating, id}: IProduct) => {
                         readOnly
                         emptyIcon={<img src={noneStar} alt="star" />}
                         className={styles.product__rating}
+                        size="large"
                     />
                 </div>
                 <div className={styles.product__price}>

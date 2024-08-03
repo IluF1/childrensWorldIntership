@@ -1,0 +1,8 @@
+.orders__item {
+    margin-bottom: 20px;
+}
+.orders {
+    margin-top: 20px;
+    display: grid;
+    justify-content: center;
+}

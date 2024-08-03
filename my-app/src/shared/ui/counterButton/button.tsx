@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import {useProductTotal} from './model/context';
 
 import {halfMinus, minus, plus} from '@/shared';
@@ -9,7 +11,7 @@ interface ICartButtonProps {
     productId: number;
 }
 
-export const CartButton = ({productId}: ICartButtonProps) => {
+export const CartButton = memo(({productId}: ICartButtonProps) => {
     const {cartItems, setCount} = useProductTotal();
     const item = cartItems.find((item) => item.id === productId);
 
@@ -29,4 +31,4 @@ export const CartButton = ({productId}: ICartButtonProps) => {
             </button>
         </div>
     );
-};
+});

@@ -1,10 +1,13 @@
-import {useEffect, useState} from 'react';
-
-import {IHeaderElement} from './model/interfaces';
+import {memo, useEffect, useState} from 'react';
 
 import styles from './headerElement.module.css';
 
-export const HeaderElement = ({children, link}: IHeaderElement) => {
+export interface IHeaderElement {
+    children: string;
+    link: string;
+}
+
+export const HeaderElement = memo(({children, link}: IHeaderElement) => {
     const [active, setActive] = useState(false);
 
     useEffect(() => {
@@ -18,4 +21,4 @@ export const HeaderElement = ({children, link}: IHeaderElement) => {
             {children}
         </a>
     );
-};
+});

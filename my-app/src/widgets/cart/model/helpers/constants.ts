@@ -7,6 +7,8 @@ export const baseStyle = {
     borderRadius: '24px',
     boxShadow: '0px 16px 40px 0px rgba(23, 32, 41, 0.32)',
     p: 4,
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    margin: 'auto',
+    marginInline: 'auto',
+    marginBlockStart: '50vh',
+    transform: 'translateY(-50%)',
 };

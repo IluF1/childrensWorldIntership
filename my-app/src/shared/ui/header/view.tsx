@@ -1,13 +1,13 @@
-import {useState} from 'react';
+import {memo, useState} from 'react';
 
 import {HeaderElement} from '../headerElement/headerElement';
 
 import {Title, cartImg, logo, useAppSelector} from '@/shared';
-import Cart from '@/widgets/cart/view';
+import {Cart} from '@/widgets/cart/view';
 
 import styles from './view.module.css';
 
-export const Header = () => {
+export const Header = memo(() => {
     const [active, setActive] = useState<boolean>(false);
     const amount = useAppSelector((state) => state.cart.amount);
 
@@ -33,4 +33,4 @@ export const Header = () => {
             {active && <Cart active={active} setActive={setActive} />}
         </header>
     );
-};
+});

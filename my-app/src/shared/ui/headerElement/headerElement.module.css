@@ -1,9 +1,11 @@
 .active {
   color: #0073e6;
   border-bottom: 3px solid #0073e6;
+  font-weight: 700;
 }
 
 .element {
+  font-weight: 700;
   transition: 0.2s ease-in-out;
 }
 .element:hover {

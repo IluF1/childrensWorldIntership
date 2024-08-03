@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import './title.css';
 
 export type StylesTitle =
@@ -25,11 +27,11 @@ export interface ITitle {
     children: any;
 }
 
-export const Title = ({children, style}: ITitle) => {
+export const Title = memo(({children, style}: ITitle) => {
     const classNames = ['title'];
     if (style && styleClassMap[style]) {
         classNames.push(styleClassMap[style]);
     }
 
     return <p className={classNames.join(' ')}>{children}</p>;
-};
+});

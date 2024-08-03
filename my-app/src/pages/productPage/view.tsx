@@ -85,6 +85,7 @@ const ProductPage = () => {
                             readOnly
                             emptyIcon={<img src={noneStar} alt="star" />}
                             className={styles['product-page__rating']}
+                            size="large"
                         />
                         <div className={styles['product-page__price']}>
                             <Title style="bigPrice">{formatPrice(Number(card?.price))}</Title>

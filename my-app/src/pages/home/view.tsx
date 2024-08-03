@@ -1,7 +1,11 @@
 import {useState} from 'react';
 
+import {PaginationItem} from '@mui/material';
+
 import {useGetProducts} from '../../features/hooks/useGetProducts';
 import {useSetParam} from '../../features/hooks/useSetParams';
+
+import {ArrowLeftIcon, ArrowRightIcon} from './ui/icons';
 
 import {StyledPagination} from '@/pages/home/ui/pagination/pagination';
 import {Product, currentUrl} from '@/shared';
@@ -39,8 +43,17 @@ export const Home = () => {
                 <StyledPagination
                     count={10}
                     shape="rounded"
-                    page={Number(currentUrl.searchParams.get('page'))}
+                    page={page}
                     onChange={handleChange}
+                    renderItem={(item) => (
+                        <PaginationItem
+                            {...item}
+                            components={{
+                                previous: ArrowLeftIcon,
+                                next: ArrowRightIcon,
+                            }}
+                        />
+                    )}
                 />
             </div>
         </div>

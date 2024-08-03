@@ -1,20 +1,21 @@
-import {memo} from 'react';
-
 import {Box, Modal} from '@mui/material';
-import axios from 'axios';
 
 import {baseStyle} from './model/helpers/constants';
 import {ICart} from './model/helpers/interfaces';
 
-import {CartItem, MyButton, Title, formatPrice, useAppSelector} from '@/shared';
+import {updateCart} from '@/features/api/api';
+import {CartItem, MyButton, Title, formatPrice, useAppDispatch, useAppSelector} from '@/shared';
 import {useProductTotal} from '@/shared/ui/counterButton/model/context';
+import {instance} from '@/shared/utils/constants/instance';
 
 import styles from './view.module.css';
 
-const Cart = ({active, setActive}: ICart) => {
+export const Cart = ({active, setActive}: ICart) => {
     const handleClose = () => setActive(false);
 
     const data = useAppSelector((state) => state.cart.cart);
+
+    const dispatch = useAppDispatch();
 
     const {cartItems} = useProductTotal();
 
@@ -25,13 +26,14 @@ const Cart = ({active, setActive}: ICart) => {
     }, 0);
 
     const cartSubmit = () => {
-        axios.post('https://skillfactory-task.detmir.team/cart/submit');
+        instance.post('https://skillfactory-task.detmir.team/cart/submit', null);
+        dispatch(updateCart([]));
     };
 
     return (
         <Modal open={active} onClose={handleClose} className={styles.modal}>
             <Box sx={baseStyle}>
-                {data ? (
+                {data.length ? (
                     <>
                         <ul>
                             {data.map((item) => (
@@ -62,5 +64,3 @@ const Cart = ({active, setActive}: ICart) => {
         </Modal>
     );
 };
-
-export default memo(Cart);

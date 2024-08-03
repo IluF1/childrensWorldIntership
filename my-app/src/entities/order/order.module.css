@@ -1,7 +1,13 @@
 .order {
-    display: block;
+    display: grid;
     padding: 24px;
     border-radius: 16px;
     width: 792px;
     height: 96px;
+    background-color: white;
+    grid-template-columns: repeat(4, auto);
+}
+.order__pictures {
+    height: 48px;
+    width: 48px;
 }
