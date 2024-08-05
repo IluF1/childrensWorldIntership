@@ -4,7 +4,15 @@ import {baseStyle} from './model/helpers/constants';
 import {ICart} from './model/helpers/interfaces';
 
 import {updateCart} from '@/features/api/api';
-import {CartItem, MyButton, Title, formatPrice, useAppDispatch, useAppSelector} from '@/shared';
+import {
+    CartItem,
+    MyButton,
+    Title,
+    baseUrl,
+    formatPrice,
+    useAppDispatch,
+    useAppSelector,
+} from '@/shared';
 import {useProductTotal} from '@/shared/ui/counterButton/model/context';
 import {instance} from '@/shared/utils/constants/instance';
 
@@ -26,7 +34,7 @@ export const Cart = ({active, setActive}: ICart) => {
     }, 0);
 
     const cartSubmit = () => {
-        instance.post('https://skillfactory-task.detmir.team/cart/submit', null);
+        instance.post(`${baseUrl}cart/submit`, null);
         dispatch(updateCart([]));
     };
 

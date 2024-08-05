@@ -1,0 +1,18 @@
+:root {
+    --base-text-color: #172029;
+    --base-block-color: #ffffff;
+    --light-text-color: #808080;
+    --blue-color: #0073e6;
+    --light-blue-color: #e6f1fc;
+    --red-text-color: #ed2c19;
+    --base-text-weight: 400;
+    --bold-text-weight: 700;
+    --price-text-weight: 800;
+    --base-font-size: 16px;
+    --small-font-size: 14px;
+    --so-small-font-size: 12px;
+    --big-font-size: 22px;
+    --middle-font-size: 20px;
+    --so-big-font-size: 28px;
+    --base-transition-duration: 0.2s;
+}

@@ -1,47 +1,49 @@
+@import url('../../../app/assets/styles/variables.css');
+
 .bold-title {
-  font-weight: 700;
-  line-height: 20px;
+    font-weight: var(--bold-text-weight);
+    line-height: 20px;
 }
 
 .name-title {
-  font-weight: 400;
-  line-height: 20px;
-  height: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  font-size: 14px;
+    font-weight: var(--base-text-weight);
+    line-height: 20px;
+    height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: var(--small-font-size);
 }
 .price-title {
-  font-weight: 800;
-  font-size: 22px;
-  line-height: 32px;
+    font-weight: var(--price-text-weight);
+    font-size: var(--big-font-size);
+    line-height: 32px;
 }
 .red-title {
-  font-weight: 700;
-  line-height: 20px;
-  color: red;
+    font-weight: var(--bold-text-weight);
+    line-height: 20px;
+    color: var(--red-text-color);
 }
 .bigName-title {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 32px;
-  text-align: left;
-  word-break: break-all;
+    font-size: var(--so-big-font-size);
+    font-weight: var(--bold-text-weight);
+    line-height: 32px;
+    text-align: left;
+    word-break: break-all;
 }
 .bigPrice-title {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 32px;
+    font-size: var(--so-big-font-size);
+    font-weight: var(--price-text-weight);
+    line-height: 32px;
 }
 
 @media screen and (max-width: 992px) {
-  .price-title {
-    font-size: 14px;
-  }
-  .name-title {
-    font-size: 12px;
-    height: 20px;
-  }
+    .price-title {
+        font-size: var(--small-font-size);
+    }
+    .name-title {
+        font-size: 12px;
+        height: 20px;
+    }
 }

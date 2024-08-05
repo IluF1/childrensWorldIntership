@@ -1,22 +1,24 @@
+@import url('../../app/assets/styles/variables.css');
+
 .cart__amount-total {
-  padding: 27px 0 5px 0;
+    padding: 27px 0 5px 0;
 }
 
 .cart__total {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .cart__total-price {
-  float: right;
-  margin-top: -30px;
+    float: right;
+    margin-top: -30px;
 }
 
 .cart__total-text {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 24px;
+    font-size: 24px;
+    font-weight: var(--bold-text-weight);
+    line-height: 24px;
 }
 
 .modal {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }

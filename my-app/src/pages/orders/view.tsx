@@ -2,20 +2,34 @@ import {useEffect, useState} from 'react';
 
 import {Order} from '@/entities/order/order';
 import {baseUrl, instance} from '@/shared';
-import {ICartData} from '@/widgets/cart/model/helpers/interfaces';
 
 import styles from './view.module.css';
 
+interface Product {
+    id: string;
+    category: string;
+    picture: string;
+}
+
+interface OrderItem {
+    quantity: number;
+    createdAt: string;
+    product: Product;
+}
+
+interface IOrdersResponse {
+    data: OrderItem[][];
+}
+
 export const Orders = () => {
-    const [data, setData] = useState<ICartData[]>([]);
+    const [data, setData] = useState<OrderItem[][]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await instance.get(`${baseUrl}orders?limit=5&page=1`);
+                const res = await instance.get<IOrdersResponse>(`${baseUrl}orders?limit=5&page=1`);
                 if (res.data && Array.isArray(res.data.data)) {
-                    const flattenedData = res.data.data.flat();
-                    setData(flattenedData);
+                    setData(res.data.data);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -28,12 +42,12 @@ export const Orders = () => {
     return (
         <div>
             <ul className={styles.orders}>
-                {data.map((item) => (
-                    <li key={item.product.id} className={styles.orders__item}>
+                {data.map((orderGroup, groupIndex) => (
+                    <li key={groupIndex} className={styles.orderGroup}>
                         <Order
-                            pictures={item.product.picture}
-                            created={item.createdAt}
-                            amount={Number(item.product.price)}
+                            id={orderGroup[0].product.id}
+                            created={orderGroup[0].createdAt}
+                            product={orderGroup.map((item) => item.product)}
                         />
                     </li>
                 ))}
