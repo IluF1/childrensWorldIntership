@@ -22,3 +22,6 @@
 .modal {
     overflow-y: scroll;
 }
+.alert {
+    z-index: 10000;
+}

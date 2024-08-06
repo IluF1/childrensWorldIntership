@@ -34,7 +34,7 @@ export const Home = () => {
                             rating={Number(product.rating)}
                             picture={product.picture}
                             description=""
-                            category=""
+                            category=''
                         />
                     </li>
                 ))}

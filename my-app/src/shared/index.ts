@@ -14,7 +14,7 @@ export {Product} from '@/entities/product/view';
 export {useAppDispatch} from '@/features/hooks/useAppDispatch';
 export {useAppSelector} from '@/features/hooks/useAppSelector';
 export {CartButton} from '@/shared/ui/counterButton/button';
-export {Header} from '@/shared/ui/header/view';
+export {Header} from '@/widgets/header/view';
 export {MyButton} from './ui/button/button';
 export {Title} from './ui/title/title';
 export {baseUrl, currentUrl} from './utils/constants/constants';

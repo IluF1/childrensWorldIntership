@@ -1,4 +1,6 @@
-import {Box, Modal} from '@mui/material';
+import {useState} from 'react';
+
+import {Alert, Box, Modal, Snackbar} from '@mui/material';
 
 import {baseStyle} from './model/helpers/constants';
 import {ICart} from './model/helpers/interfaces';
@@ -18,12 +20,32 @@ import {instance} from '@/shared/utils/constants/instance';
 
 import styles from './view.module.css';
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const alert = (open: boolean) => {
+    return (
+        <div>
+            {open ? (
+                <Snackbar open={open} autoHideDuration={60}>
+                    <Alert severity="success" variant="filled" sx={{width: '100%'}}>
+                        This is a success Alert inside a Snackbar!
+                    </Alert>
+                </Snackbar>
+            ) : null}
+        </div>
+    );
+};
 export const Cart = ({active, setActive}: ICart) => {
     const handleClose = () => setActive(false);
+    const [open, setOpen] = useState(true);
 
     const data = useAppSelector((state) => state.cart.cart);
 
     const dispatch = useAppDispatch();
+    const cartSubmit = () => {
+        instance.post(`${baseUrl}cart/submit`, null);
+        dispatch(updateCart([]));
+        setOpen(true);
+    };
 
     const {cartItems} = useProductTotal();
 
@@ -33,42 +55,40 @@ export const Cart = ({active, setActive}: ICart) => {
         return acc + Number(item.product.price) * productCount;
     }, 0);
 
-    const cartSubmit = () => {
-        instance.post(`${baseUrl}cart/submit`, null);
-        dispatch(updateCart([]));
-    };
-
     return (
-        <Modal open={active} onClose={handleClose} className={styles.modal}>
-            <Box sx={baseStyle}>
-                {data.length ? (
-                    <>
-                        <ul>
-                            {data.map((item) => (
-                                <li key={item.product.id}>
-                                    <CartItem
-                                        title={item.product.title}
-                                        img={item.product.picture}
-                                        price={Number(item.product.price)}
-                                        id={item.product.id}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
-                        <div className={styles['cart__amount-total']}>
-                            <div className={styles.cart__total}>
-                                <h2 className={styles['cart__total-text']}>Итого</h2>
-                                <div className={styles['cart__total-price']}>
-                                    <Title style="bigPrice">{formatPrice(totalPrice)}</Title>
+        <div>
+            {alert(open)}
+            <Modal open={active} onClose={handleClose} className={styles.modal}>
+                <Box sx={baseStyle}>
+                    {data.length ? (
+                        <>
+                            <ul>
+                                {data.map((item) => (
+                                    <li key={item.product.id}>
+                                        <CartItem
+                                            title={item.product.title}
+                                            img={item.product.picture}
+                                            price={Number(item.product.price)}
+                                            id={item.product.id}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className={styles['cart__amount-total']}>
+                                <div className={styles.cart__total}>
+                                    <h2 className={styles['cart__total-text']}>Итого</h2>
+                                    <div className={styles['cart__total-price']}>
+                                        <Title style="bigPrice">{formatPrice(totalPrice)}</Title>
+                                    </div>
                                 </div>
+                                <MyButton children="Оформить заказ" onClick={cartSubmit} />
                             </div>
-                            <MyButton children="Оформить заказ" onClick={cartSubmit} />
-                        </div>
-                    </>
-                ) : (
-                    <Title children="Ваша корзина пуста" style="bold" />
-                )}
-            </Box>
-        </Modal>
+                        </>
+                    ) : (
+                        <Title children="Ваша корзина пуста" style="bold" />
+                    )}
+                </Box>
+            </Modal>
+        </div>
     );
 };

@@ -5,7 +5,7 @@ import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 import {fetchCartData} from '@/features/api/api';
 import {Home} from '@/pages/home/view';
 import {Orders} from '@/pages/orders/view';
-import ProductPage from '@/pages/productPage/view';
+import {ProductPage} from '@/pages/productPage/view';
 import {useAppDispatch} from '@/shared';
 
 // eslint-disable-next-line no-implicit-globals

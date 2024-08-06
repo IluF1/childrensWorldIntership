@@ -12,17 +12,28 @@
     margin-left: auto;
     grid-template-areas: 'a b c d';
 }
+.order__header {
+    grid-area: a;
+}
 .order__pictures {
     height: 48px;
     width: 48px;
 }
-.orderContent,
-.product {
+.order__product {
+    height: 48px;
+    width: 48px;
+    display: block;
+}
+.order__content,
+.order__product {
     display: inline;
     margin-left: 10px;
 }
+.order__content {
+    grid-area: b;
+}
 .order__info {
     display: grid;
-    grid-template-columns: repeat(2, 0.6fr);
+    grid-template-columns: repeat(2, auto);
     grid-area: d;
 }

@@ -9,6 +9,7 @@ interface Product {
     id: string;
     category: string;
     picture: string;
+    price: number;
 }
 
 interface OrderItem {
@@ -27,7 +28,7 @@ export const Orders = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await instance.get<IOrdersResponse>(`${baseUrl}orders?limit=5&page=1`);
+                const res = await instance.get<IOrdersResponse>(`${baseUrl}orders?limit=15&page=1`);
                 if (res.data && Array.isArray(res.data.data)) {
                     setData(res.data.data);
                 }
@@ -45,6 +46,10 @@ export const Orders = () => {
                 {data.map((orderGroup, groupIndex) => (
                     <li key={groupIndex} className={styles.orderGroup}>
                         <Order
+                            total={orderGroup.reduce(
+                                (acc, item) => acc + item.product.price * item.quantity,
+                                0,
+                            )}
                             id={orderGroup[0].product.id}
                             created={orderGroup[0].createdAt}
                             product={orderGroup.map((item) => item.product)}

@@ -3,7 +3,7 @@ import {format} from 'date-fns';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {ru} from 'date-fns/locale';
 
-import {Title} from '@/shared';
+import {Title, formatPrice} from '@/shared';
 
 import styles from './order.module.css';
 
@@ -16,20 +16,21 @@ interface Product {
 interface IOrder {
     id: string;
     created: string;
+    total: number;
     product: Product[];
 }
 
-export const Order = ({created, product, id}: IOrder) => {
+export const Order = ({created, product, id, total}: IOrder) => {
     const date = format(new Date(created), 'd MMMM yyyy', {locale: ru});
     return (
         <div className={styles.order}>
-            <div className={styles.orderHeader}>
+            <div className={styles.order__header}>
                 <Title children={'Заказ'} style={'name'} />
-                <Title children={id} style="bold" />
+                <Title children={'№' + id} style="bold" />
             </div>
-            <ul className={styles.orderContent}>
+            <ul className={styles.order__content}>
                 {product.map((prod, index) => (
-                    <li key={index} className={styles.product}>
+                    <li key={index} className={styles.order__product}>
                         <img
                             src={prod.picture}
                             alt={`Product ${prod.id}`}
@@ -42,7 +43,7 @@ export const Order = ({created, product, id}: IOrder) => {
                 <Title children={'Оформлено'} style="name" />
                 <Title children={date} style="bold" />
                 <Title children={'На сумму'} style="name" />
-                <Title children={'12231'} style="bold" />
+                <Title children={formatPrice(total)} style="bold" />
             </div>
         </div>
     );

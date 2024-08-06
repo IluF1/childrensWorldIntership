@@ -13,7 +13,9 @@ import {
     MyButton,
     Title,
     arrowLeft,
+    baseUrl,
     formatPrice,
+    instance,
     noneStar,
     star,
     undoImg,
@@ -24,17 +26,17 @@ import {ICartData} from '@/widgets/cart/model/helpers/interfaces';
 
 import styles from './view.module.css';
 
-const ProductPage = () => {
+export const ProductPage = memo(() => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {card} = useGetProductById(Number(productId));
-    const cartItems = useAppSelector((state) => state.cart.cart);
+    const cart = useAppSelector((state) => state.cart.cart);
 
     if (!card) {
         return <div></div>;
     }
 
-    const existingItem = cartItems.find((item) => item.product.id === card.id);
+    const existingItem = cart.find((item) => item.product.id === card.id);
     const handler = () => {
         const newItem: ICartData = {
             product: {
@@ -51,11 +53,16 @@ const ProductPage = () => {
 
         let updatedCart: ICartData[] = [];
         if (!existingItem) {
-            updatedCart = [...cartItems, newItem];
+            updatedCart = [...cart, newItem];
         }
 
         dispatch(addItem(newItem));
         dispatch(updateCart(updatedCart));
+    };
+
+    const cartSubmit = () => {
+        instance.post(`${baseUrl}cart/submit`, null);
+        dispatch(updateCart([]));
     };
 
     return (
@@ -94,7 +101,7 @@ const ProductPage = () => {
                         {existingItem ? (
                             <div className={styles['product-page__checkout']}>
                                 <CartButton productId={Number(card.id)} />
-                                <MyButton children="Оформить заказ" />
+                                <MyButton children="Оформить заказ" onClick={cartSubmit} />
                             </div>
                         ) : (
                             <div className={styles['product-page__add-to-cart-btn']}>
@@ -133,6 +140,4 @@ const ProductPage = () => {
             </div>
         </div>
     );
-};
-
-export default memo(ProductPage);
+});
