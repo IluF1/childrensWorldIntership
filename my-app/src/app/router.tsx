@@ -2,14 +2,14 @@ import {useEffect} from 'react';
 
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 
-import {fetchCartData} from '@/features/api/api';
-import {Home} from '@/pages/home/view';
-import {Orders} from '@/pages/orders/view';
-import {ProductPage} from '@/pages/productPage/view';
+import {fetchCartData} from '@/features/Api/api';
+import {Home} from '@/pages/Home/Home';
+import {Orders} from '@/pages/Orders/Orders';
+import {ProductPage} from '@/pages/ProductPage/ProductPage';
 import {useAppDispatch} from '@/shared';
 
 // eslint-disable-next-line no-implicit-globals
-export function ReactRouter() {
+export const ReactRouter = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -25,4 +25,4 @@ export function ReactRouter() {
             </Routes>
         </Router>
     );
-}
+};

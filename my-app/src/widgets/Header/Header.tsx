@@ -3,14 +3,13 @@ import {memo, useState} from 'react';
 import {HeaderElement} from '../../shared/ui/headerElement/headerElement';
 
 import {Title, cartImg, logo, useAppSelector} from '@/shared';
-import {Cart} from '@/widgets/cart/view';
+import {Cart} from '@/widgets/Cart/Cart';
 
 import styles from './view.module.css';
 
 export const Header = memo(() => {
     const [active, setActive] = useState<boolean>(false);
     const amount = useAppSelector((state) => state.cart.amount);
-
     return (
         <header className={styles.header}>
             <a href="/" className={styles['header__logo']}>

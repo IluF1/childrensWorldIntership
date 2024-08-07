@@ -1,7 +1,7 @@
 import {CartButton} from '../../shared/ui/counterButton/button';
 import {useProductTotal} from '../../shared/ui/counterButton/model/context';
 
-import {updateCart} from '@/features/api/api';
+import {updateCart} from '@/features/Api/api';
 import {Title, formatPrice, trash, useAppDispatch, useAppSelector} from '@/shared';
 
 import styles from './view.module.css';

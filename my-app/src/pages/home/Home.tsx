@@ -2,12 +2,12 @@ import {useState} from 'react';
 
 import {PaginationItem} from '@mui/material';
 
-import {useGetProducts} from '../../features/hooks/useGetProducts';
-import {useSetParam} from '../../features/hooks/useSetParams';
+import {useGetProducts} from '../../features/Hooks/useGetProducts';
+import {useSetParam} from '../../features/Hooks/useSetParams';
 
 import {ArrowLeftIcon, ArrowRightIcon} from './ui/icons';
 
-import {StyledPagination} from '@/pages/home/ui/pagination/pagination';
+import {StyledPagination} from '@/pages/Home/ui/pagination/pagination';
 import {Product, currentUrl} from '@/shared';
 
 import styles from './view.module.css';
@@ -34,7 +34,7 @@ export const Home = () => {
                             rating={Number(product.rating)}
                             picture={product.picture}
                             description=""
-                            category=''
+                            category=""
                         />
                     </li>
                 ))}

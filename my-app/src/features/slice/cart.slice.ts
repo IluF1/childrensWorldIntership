@@ -1,7 +1,7 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-import {ICartData} from '../../widgets/cart/model/helpers/interfaces';
-import {fetchCartData, updateCart} from '../api/api';
+import {ICartData} from '../../widgets/Cart/model/helpers/interfaces';
+import {fetchCartData, updateCart} from '../Api/api';
 
 export interface IInitialState {
     cart: ICartData[];

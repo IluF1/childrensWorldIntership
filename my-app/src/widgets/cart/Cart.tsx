@@ -5,7 +5,7 @@ import {Alert, Box, Modal, Snackbar} from '@mui/material';
 import {baseStyle} from './model/helpers/constants';
 import {ICart} from './model/helpers/interfaces';
 
-import {updateCart} from '@/features/api/api';
+import {updateCart} from '@/features/Api/api';
 import {
     CartItem,
     MyButton,
