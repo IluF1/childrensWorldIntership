@@ -4,7 +4,7 @@
     display: grid;
     padding: 24px;
     border-radius: 16px;
-    width: 792px;
+    width: 1280px;
     height: 96px;
     background-color: var(--base-block-color);
     grid-template-columns: repeat(4, auto);

@@ -1,11 +1,11 @@
 import {memo, useState} from 'react';
 
-import {HeaderElement} from '../../shared/ui/headerElement/headerElement';
+import {HeaderElement} from '../../shared/Ui/HeaderElement/HeaderElement';
 
 import {Title, cartImg, logo, useAppSelector} from '@/shared';
 import {Cart} from '@/widgets/Cart/Cart';
 
-import styles from './view.module.css';
+import styles from './Header.module.css';
 
 export const Header = memo(() => {
     const [active, setActive] = useState<boolean>(false);

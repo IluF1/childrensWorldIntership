@@ -1,11 +1,9 @@
-import {useState} from 'react';
-
-import {Alert, Box, Modal, Snackbar} from '@mui/material';
+import {Box, Modal} from '@mui/material';
 
 import {baseStyle} from './model/helpers/constants';
 import {ICart} from './model/helpers/interfaces';
 
-import {updateCart} from '@/features/Api/api';
+import {updateCart} from '@/features/Api/Api';
 import {
     CartItem,
     MyButton,
@@ -15,28 +13,12 @@ import {
     useAppDispatch,
     useAppSelector,
 } from '@/shared';
-import {useProductTotal} from '@/shared/ui/counterButton/model/context';
-import {instance} from '@/shared/utils/constants/instance';
+import {instance} from '@/shared/Utils/Constants/instance';
 
-import styles from './view.module.css';
+import styles from './Cart.module.css';
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const alert = (open: boolean) => {
-    return (
-        <div>
-            {open ? (
-                <Snackbar open={open} autoHideDuration={60}>
-                    <Alert severity="success" variant="filled" sx={{width: '100%'}}>
-                        This is a success Alert inside a Snackbar!
-                    </Alert>
-                </Snackbar>
-            ) : null}
-        </div>
-    );
-};
 export const Cart = ({active, setActive}: ICart) => {
     const handleClose = () => setActive(false);
-    const [open, setOpen] = useState(true);
 
     const data = useAppSelector((state) => state.cart.cart);
 
@@ -44,20 +26,14 @@ export const Cart = ({active, setActive}: ICart) => {
     const cartSubmit = () => {
         instance.post(`${baseUrl}cart/submit`, null);
         dispatch(updateCart([]));
-        setOpen(true);
     };
 
-    const {cartItems} = useProductTotal();
-
     const totalPrice = data.reduce((acc, item) => {
-        const productCount =
-            cartItems.find((cartItem) => cartItem.id === Number(item.product.id))?.count || 1;
-        return acc + Number(item.product.price) * productCount;
+        return acc + Number(item.product.price) * (item.quantity || 1);
     }, 0);
 
     return (
         <div>
-            {alert(open)}
             <Modal open={active} onClose={handleClose} className={styles.modal}>
                 <Box sx={baseStyle}>
                     {data.length ? (
@@ -81,11 +57,11 @@ export const Cart = ({active, setActive}: ICart) => {
                                         <Title style="bigPrice">{formatPrice(totalPrice)}</Title>
                                     </div>
                                 </div>
-                                <MyButton children="Оформить заказ" onClick={cartSubmit} />
+                                <MyButton onClick={cartSubmit}>Оформить заказ</MyButton>
                             </div>
                         </>
                     ) : (
-                        <Title children="Ваша корзина пуста" style="bold" />
+                        <Title style="bold">Ваша корзина пуста</Title>
                     )}
                 </Box>
             </Modal>

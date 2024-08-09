@@ -5,9 +5,9 @@ import {useNavigate} from 'react-router-dom';
 
 import {productId} from './model/helpers/constants';
 
-import {updateCart} from '@/features/Api/api';
+import {updateCart} from '@/features/Api/Api';
 import {useGetProductById} from '@/features/Hooks/useGetProductById';
-import {addItem} from '@/features/Slice/cart.slice';
+import {addItem} from '@/features/Slices/Cart.slice';
 import {
     CartButton,
     MyButton,
@@ -24,7 +24,7 @@ import {
 } from '@/shared';
 import {ICartData} from '@/widgets/Cart/model/helpers/interfaces';
 
-import styles from './view.module.css';
+import styles from './ProductPage.module.css';
 
 export const ProductPage = memo(() => {
     const navigate = useNavigate();

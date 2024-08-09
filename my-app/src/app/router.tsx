@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 
-import {fetchCartData} from '@/features/Api/api';
+import {fetchCartData} from '@/features/Api/Api';
 import {Home} from '@/pages/Home/Home';
 import {Orders} from '@/pages/Orders/Orders';
 import {ProductPage} from '@/pages/ProductPage/ProductPage';

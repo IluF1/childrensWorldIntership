@@ -10,7 +10,7 @@ import {ArrowLeftIcon, ArrowRightIcon} from './ui/icons';
 import {StyledPagination} from '@/pages/Home/ui/pagination/pagination';
 import {Product, currentUrl} from '@/shared';
 
-import styles from './view.module.css';
+import styles from './Home.module.css';
 
 export const Home = () => {
     const [page, setPage] = useState<number>(Number(currentUrl.searchParams.get('page')) || 1);

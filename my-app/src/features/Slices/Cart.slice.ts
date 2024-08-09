@@ -1,7 +1,7 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 import {ICartData} from '../../widgets/Cart/model/helpers/interfaces';
-import {fetchCartData, updateCart} from '../Api/api';
+import {fetchCartData, updateCart} from '../Api/Api';
 
 export interface IInitialState {
     cart: ICartData[];
@@ -20,6 +20,18 @@ const cartSlice = createSlice({
         addItem: (state, action: PayloadAction<ICartData>) => {
             state.cart.push(action.payload);
             state.amount = state.cart.length;
+        },
+        incrementQuantityItem: (state, action: PayloadAction<string>) => {
+            const item = state.cart.find((product) => product.product.id === action.payload);
+            if (item) {
+                item.quantity += 1;
+            }
+        },
+        decrementQuantityItem: (state, action: PayloadAction<string>) => {
+            const item = state.cart.find((product) => product.product.id === action.payload);
+            if (item && item.quantity !== 0) {
+                item.quantity -= 1;
+            }
         },
     },
     extraReducers: (builder) => {
@@ -41,5 +53,5 @@ const cartSlice = createSlice({
     },
 });
 
-export const {addItem} = cartSlice.actions;
+export const {addItem, incrementQuantityItem, decrementQuantityItem} = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

@@ -1,6 +1,6 @@
 import {memo, useEffect, useState} from 'react';
 
-import styles from './headerElement.module.css';
+import styles from './HeaderElement.module.css';
 
 export interface IHeaderElement {
     children: string;

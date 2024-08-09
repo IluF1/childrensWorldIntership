@@ -2,7 +2,7 @@ import {Rating} from '@mui/material';
 
 import {IProduct, Title, formatPrice, noneStar, star} from '@/shared';
 
-import styles from './view.module.css';
+import styles from './Product.module.css';
 
 export const Product = ({title, price, picture, rating, id}: IProduct) => {
     return (

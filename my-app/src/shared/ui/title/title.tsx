@@ -1,6 +1,6 @@
 import {memo} from 'react';
 
-import './title.css';
+import './Title.css';
 
 export type StylesTitle =
     | 'name'

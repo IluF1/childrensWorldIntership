@@ -5,7 +5,7 @@ import {ru} from 'date-fns/locale';
 
 import {Title, formatPrice} from '@/shared';
 
-import styles from './order.module.css';
+import styles from './Order.module.css';
 
 interface Product {
     id: string;

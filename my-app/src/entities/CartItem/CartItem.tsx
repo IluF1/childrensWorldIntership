@@ -1,10 +1,9 @@
-import {CartButton} from '../../shared/ui/counterButton/button';
-import {useProductTotal} from '../../shared/ui/counterButton/model/context';
+import {CartButton} from '../../shared/Ui/CounterProductButton/CounterProductButton';
 
-import {updateCart} from '@/features/Api/api';
+import {updateCart} from '@/features/Api/Api';
 import {Title, formatPrice, trash, useAppDispatch, useAppSelector} from '@/shared';
 
-import styles from './view.module.css';
+import styles from './CartItem.module.css';
 
 interface ICartItem {
     title: string;
@@ -14,15 +13,14 @@ interface ICartItem {
 }
 
 export const CartItem = ({title, img, price, id}: ICartItem) => {
-    const {cartItems} = useProductTotal();
-    const item = cartItems.find((item) => item.id === Number(id));
-    const count = item ? item.count : 1;
     const products = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch();
 
+    const count = products.find((item) => item.product.id === id)?.quantity || 0;
+
     const removeItemFromCart = () => {
-        const newItems = products.filter((item) => item.product.id !== id);
-        dispatch(updateCart(newItems));
+        const items = products.filter((item) => item.product.id !== id);
+        dispatch(updateCart(items));
     };
 
     return (
@@ -44,6 +42,9 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
                 </div>
 
                 <div className={styles['cart-item__price']}>
+                    {count > 1 ? (
+                        <Title style="name">{formatPrice(price) + ' за шт.'}</Title>
+                    ) : null}
                     {count === 0 ? (
                         <button onClick={removeItemFromCart}>
                             <Title style="red">
@@ -52,7 +53,7 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
                             </Title>
                         </button>
                     ) : (
-                        <Title style="price">{formatPrice(price * Number(count))}</Title>
+                        <Title style="price">{formatPrice(price * count)}</Title>
                     )}
                 </div>
             </div>

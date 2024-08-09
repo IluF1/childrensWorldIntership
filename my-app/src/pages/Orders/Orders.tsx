@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 
-import {Order} from '@/entities/order/order';
+import {Order} from '@/entities/Order/Order';
 import {baseUrl, instance} from '@/shared';
 
-import styles from './view.module.css';
+import styles from './Orders.module.css';
 
 interface Product {
     id: string;
