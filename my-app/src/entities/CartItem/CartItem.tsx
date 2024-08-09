@@ -19,8 +19,7 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
     const count = products.find((item) => item.product.id === id)?.quantity || 0;
 
     const removeItemFromCart = () => {
-        const items = products.filter((item) => item.product.id !== id);
-        dispatch(updateCart(items));
+        dispatch(updateCart(products.filter((item) => item.product.id !== id)));
     };
 
     return (
