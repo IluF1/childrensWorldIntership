@@ -28,6 +28,7 @@ export const Header = memo(() => {
                 </button>
             </div>
             {active && <Cart active={active} setActive={setActive} />}
+            <div className={styles.header__burger}></div>
         </header>
     );
 });

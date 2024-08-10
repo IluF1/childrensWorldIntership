@@ -40,10 +40,10 @@
 
 @media screen and (max-width: 992px) {
     .price-title {
-        font-size: var(--small-font-size);
+        font-size: 20px;
     }
     .name-title {
-        font-size: 12px;
+        font-size: 14px;
         height: 20px;
     }
 }

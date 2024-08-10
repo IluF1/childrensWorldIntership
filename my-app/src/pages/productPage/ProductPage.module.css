@@ -98,3 +98,29 @@
     grid-template-columns: repeat(2, 1fr);
     margin-top: 20px;
 }
+
+@media screen and (max-width: 992px) {
+    .product-page__information {
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .product-page__picture {
+        width: 100%;
+    }
+    .product-page {
+        padding: 5px;
+    }
+    .product-page__main {
+        width: 100%;
+        padding: 20px;
+    }
+    .product-page__description {
+        width: 100%;
+        padding: 10px;
+    }
+    .product-page__container {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

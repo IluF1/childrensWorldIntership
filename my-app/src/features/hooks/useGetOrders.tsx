@@ -27,16 +27,12 @@ export const useGetOrders = (page: number) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const res = await instance.get<IOrdersResponse>(
-                    `${baseUrl}orders?limit=10&page=${page}`,
-                );
-                if (res.data && Array.isArray(res.data.data)) {
-                    setData(res.data.data);
-                    setTotal(res.data.meta.total);
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
+            const res = await instance.get<IOrdersResponse>(
+                `${baseUrl}orders?limit=10&page=${page}`,
+            );
+            if (res.data && Array.isArray(res.data.data)) {
+                setData(res.data.data);
+                setTotal(res.data.meta.total);
             }
         };
 

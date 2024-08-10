@@ -37,3 +37,12 @@
     grid-template-columns: repeat(2, auto);
     grid-area: d;
 }
+
+@media screen and (max-width: 992px) {
+    .order {
+        width: 100%;
+    }
+    .order__pictures {
+        display: none;
+    }
+}

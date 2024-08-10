@@ -19,19 +19,21 @@ export const Product = ({title, price, picture, rating, id}: IProduct) => {
         <a href={`/product/${id}`}>
             <div className={styles.product}>
                 <img src={picture} alt={title} className={styles.product__img} loading="lazy" />
-                <Title style="name" children={title} />
-                <div>
-                    <Rating
-                        value={rating}
-                        icon={<img src={star} alt="star" />}
-                        readOnly
-                        emptyIcon={<img src={noneStar} alt="star" />}
-                        className={styles.product__rating}
-                        size="large"
-                    />
-                </div>
-                <div className={styles.product__price}>
-                    <Title style="price" children={formatPrice(price)} />
+                <div className={styles.product__info}>
+                    <Title style="name" children={title} />
+                    <div>
+                        <Rating
+                            value={rating}
+                            icon={<img src={star} alt="star" />}
+                            readOnly
+                            emptyIcon={<img src={noneStar} alt="star" />}
+                            className={styles.product__rating}
+                            size="large"
+                        />
+                    </div>
+                    <div className={styles.product__price}>
+                        <Title style="price" children={formatPrice(price)} />
+                    </div>
                 </div>
             </div>
         </a>
