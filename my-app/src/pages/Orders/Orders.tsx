@@ -1,62 +1,65 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
+
+import {PaginationItem} from '@mui/material';
+
+import {ArrowLeftIcon, ArrowRightIcon} from '../Home/ui/icons';
+import {StyledPagination} from '../Home/ui/pagination/pagination';
 
 import {Order} from '@/entities/Order/Order';
-import {baseUrl, instance} from '@/shared';
+import {useGetOrders} from '@/features/Hooks/useGetOrders';
+import {useSetParam} from '@/features/Hooks/useSetParams';
+import {Title, currentUrl} from '@/shared';
 
 import styles from './Orders.module.css';
 
-interface Product {
-    id: string;
-    category: string;
-    picture: string;
-    price: number;
-}
-
-interface OrderItem {
-    quantity: number;
-    createdAt: string;
-    product: Product;
-}
-
-interface IOrdersResponse {
-    data: OrderItem[][];
-}
-
 export const Orders = () => {
-    const [data, setData] = useState<OrderItem[][]>([]);
+    const [page, setPage] = useState<number>(Number(currentUrl.searchParams.get('page')) || 1);
+    useSetParam('page', String(page));
+    const {data, total = 0} = useGetOrders(page);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await instance.get<IOrdersResponse>(`${baseUrl}orders?limit=15&page=1`);
-                if (res.data && Array.isArray(res.data.data)) {
-                    setData(res.data.data);
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+    const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
 
     return (
         <div>
-            <ul className={styles.orders}>
-                {data.map((orderGroup, groupIndex) => (
-                    <li key={groupIndex} className={styles.orderGroup}>
-                        <Order
-                            total={orderGroup.reduce(
-                                (acc, item) => acc + item.product.price * item.quantity,
-                                0,
-                            )}
-                            id={orderGroup[0].product.id}
-                            created={orderGroup[0].createdAt}
-                            product={orderGroup.map((item) => item.product)}
-                        />
-                    </li>
-                ))}
-            </ul>
+            {data.length ? (
+                <>
+                    <ul className={styles.orders}>
+                        {data.map((orderGroup, groupIndex) => (
+                            <li key={groupIndex} className={styles.orderGroup}>
+                                <Order
+                                    total={orderGroup.reduce(
+                                        (acc, item) => acc + item.product.price * item.quantity,
+                                        0,
+                                    )}
+                                    id={orderGroup[0].product.id}
+                                    created={orderGroup[0].createdAt}
+                                    product={orderGroup.map((item) => item.product)}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                    <StyledPagination
+                        className={styles.orders__pagination}
+                        count={Math.ceil(total / 10)}
+                        shape="rounded"
+                        page={page}
+                        onChange={handleChange}
+                        renderItem={(item) => (
+                            <PaginationItem
+                                {...item}
+                                components={{
+                                    previous: ArrowLeftIcon,
+                                    next: ArrowRightIcon,
+                                }}
+                            />
+                        )}
+                    />
+                </>
+            ) : (
+                <Title style="bold">У вас пока нет заказов</Title>
+            )}
         </div>
     );
 };

@@ -22,3 +22,6 @@
 .modal {
     overflow-y: scroll;
 }
+.modal__redirect_text {
+    color: var(--blue-color);
+}

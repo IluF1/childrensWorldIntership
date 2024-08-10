@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 import {Box, Modal} from '@mui/material';
 
 import {baseStyle} from './model/helpers/constants';
@@ -10,22 +12,24 @@ import {
     Title,
     baseUrl,
     formatPrice,
+    instance,
     useAppDispatch,
     useAppSelector,
 } from '@/shared';
-import {instance} from '@/shared/Utils/Constants/instance';
 
 import styles from './Cart.module.css';
 
 export const Cart = ({active, setActive}: ICart) => {
     const handleClose = () => setActive(false);
 
+    const [order, setOrder] = useState(false);
     const data = useAppSelector((state) => state.cart.cart);
 
     const dispatch = useAppDispatch();
     const cartSubmit = () => {
         instance.post(`${baseUrl}cart/submit`, null);
         dispatch(updateCart([]));
+        setOrder(true);
     };
 
     const totalPrice = data.reduce((acc, item) => {
@@ -61,7 +65,18 @@ export const Cart = ({active, setActive}: ICart) => {
                             </div>
                         </>
                     ) : (
-                        <Title style="bold">Ваша корзина пуста</Title>
+                        <Title style="bold">
+                            {order ? (
+                                <span>
+                                    Ваш заказ успешно оформлен, перейдите на страницу{' '}
+                                    <a href="/orders" className={styles.modal__redirect_text}>
+                                        заказов
+                                    </a>
+                                </span>
+                            ) : (
+                                'Ваша корзина пустая :('
+                            )}
+                        </Title>
                     )}
                 </Box>
             </Modal>

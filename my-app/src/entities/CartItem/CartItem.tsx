@@ -1,7 +1,12 @@
-import {CartButton} from '../../shared/Ui/CounterProductButton/CounterProductButton';
-
 import {updateCart} from '@/features/Api/Api';
-import {Title, formatPrice, trash, useAppDispatch, useAppSelector} from '@/shared';
+import {
+    CounterProductButton,
+    Title,
+    formatPrice,
+    trash,
+    useAppDispatch,
+    useAppSelector,
+} from '@/shared';
 
 import styles from './CartItem.module.css';
 
@@ -37,12 +42,14 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
                     <a href={`/product/${id}`}>{title}</a>
                 </h1>
                 <div className={styles['cart-item__btn']}>
-                    <CartButton productId={Number(id)} />
+                    <CounterProductButton productId={Number(id)} />
                 </div>
 
                 <div className={styles['cart-item__price']}>
                     {count > 1 ? (
-                        <Title style="name">{formatPrice(price) + ' за шт.'}</Title>
+                        <p className={styles['cart-item__price-per-piece']}>
+                            {formatPrice(price) + ' за шт.'}
+                        </p>
                     ) : null}
                     {count === 0 ? (
                         <button onClick={removeItemFromCart}>

@@ -1,8 +1,9 @@
 import {memo} from 'react';
 
+import {Title} from '../Title/Title';
+
 import {decrementQuantityItem, incrementQuantityItem} from '@/features/Slices/Cart.slice';
 import {halfMinus, minus, plus, useAppDispatch, useAppSelector} from '@/shared';
-import {Title} from '@/shared/Ui/Title/Title';
 
 import styles from './CounterProductButton.module.css';
 
@@ -10,7 +11,7 @@ interface ICartButtonProps {
     productId: number;
 }
 
-export const CartButton = memo(({productId}: ICartButtonProps) => {
+export const CounterProductButton = memo(({productId}: ICartButtonProps) => {
     const items = useAppSelector((state) => state.cart.cart);
     const item = items.find((product) => Number(product.product.id) === productId);
     const dispatch = useAppDispatch();

@@ -31,11 +31,13 @@ export const Order = ({created, product, id, total}: IOrder) => {
             <ul className={styles.order__content}>
                 {product.map((prod, index) => (
                     <li key={index} className={styles.order__product}>
-                        <img
-                            src={prod.picture}
-                            alt={`Product ${prod.id}`}
-                            className={styles.order__pictures}
-                        />
+                        <a href={`/product/${id}`}>
+                            <img
+                                src={prod.picture}
+                                alt={`Product ${prod.id}`}
+                                className={styles.order__pictures}
+                            />
+                        </a>
                     </li>
                 ))}
             </ul>

@@ -1,8 +1,18 @@
 import {Rating} from '@mui/material';
 
-import {IProduct, Title, formatPrice, noneStar, star} from '@/shared';
+import {Title, formatPrice, noneStar, star} from '@/shared';
 
 import styles from './Product.module.css';
+
+interface IProduct {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    price: number;
+    picture: string;
+    rating: number;
+}
 
 export const Product = ({title, price, picture, rating, id}: IProduct) => {
     return (

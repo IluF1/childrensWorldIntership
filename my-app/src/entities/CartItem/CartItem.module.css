@@ -42,7 +42,11 @@
     padding-top: 20px;
 }
 .trash_img {
-    padding-bottom: -10px;
     margin-left: -25px;
     position: absolute;
+}
+.cart-item__price-per-piece {
+    font-size: 12px;
+    position: absolute;
+    margin-top: -15px;
 }

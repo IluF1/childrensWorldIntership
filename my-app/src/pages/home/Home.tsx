@@ -16,7 +16,7 @@ export const Home = () => {
     const [page, setPage] = useState<number>(Number(currentUrl.searchParams.get('page')) || 1);
     useSetParam('page', String(page));
 
-    const {data} = useGetProducts(page);
+    const {data, total} = useGetProducts(page);
 
     const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
@@ -41,7 +41,7 @@ export const Home = () => {
             </ul>
             <div className={styles.home__pagination}>
                 <StyledPagination
-                    count={10}
+                    count={Math.ceil(total / 15)}
                     shape="rounded"
                     page={page}
                     onChange={handleChange}

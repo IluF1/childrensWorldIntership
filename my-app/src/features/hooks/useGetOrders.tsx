@@ -1,65 +1,47 @@
-// import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
-// interface IProduct {
-//   id: string;
-//   title: string;
-//   description: string;
-//   category: string;
-//   price: number;
-//   picture: string;
-//   rating: number;
-// }
+import {baseUrl, instance} from '@/shared';
 
-// interface IData {
-//   product: IProduct;
-//   quantity: number;
-//   createdAt: string;
-// }
+interface Product {
+    id: string;
+    category: string;
+    picture: string;
+    price: number;
+}
 
-// interface IOrders {
-//   meta: {
-//     count: number;
-//     total: number;
-//   };
-//   data: IData[];
-// }
+interface OrderItem {
+    quantity: number;
+    createdAt: string;
+    product: Product;
+}
 
-// export const useGetOrders = (page: number) => {
-//   const url = `https://skillfactory-task.detmir.team/orders?page=${page}&limit=10`;
-//   const [data, setData] = useState<IOrders | null>(null);
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const [error, setError] = useState<string | null>(null);
+interface IOrdersResponse {
+    data: OrderItem[][];
+    meta: {
+        total: number;
+    };
+}
+export const useGetOrders = (page: number) => {
+    const [data, setData] = useState<OrderItem[][]>([]);
+    const [total, setTotal] = useState<number>();
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       setLoading(true);
-//       setError(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await instance.get<IOrdersResponse>(
+                    `${baseUrl}orders?limit=10&page=${page}`,
+                );
+                if (res.data && Array.isArray(res.data.data)) {
+                    setData(res.data.data);
+                    setTotal(res.data.meta.total);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
 
-//       try {
-//         const response = await fetch(url, {
-//           method: 'GET',
-//           credentials: 'include',
-//         });
+        fetchData();
+    }, [page]);
 
-//         if (!response.ok) {
-//           throw new Error(`Error: ${response.status} ${response.statusText}`);
-//         }
-
-//         const result: IOrders = await response.json();
-//         setData(result);
-//       } catch (err) {
-//         setError(err.message);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, [url]);
-
-//   return {
-//     data,
-//     loading,
-//     error,
-//   };
-// };
+    return {data, total};
+};

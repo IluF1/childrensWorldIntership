@@ -9,7 +9,7 @@ import {updateCart} from '@/features/Api/Api';
 import {useGetProductById} from '@/features/Hooks/useGetProductById';
 import {addItem} from '@/features/Slices/Cart.slice';
 import {
-    CartButton,
+    CounterProductButton,
     MyButton,
     Title,
     arrowLeft,
@@ -100,7 +100,7 @@ export const ProductPage = memo(() => {
 
                         {existingItem ? (
                             <div className={styles['product-page__checkout']}>
-                                <CartButton productId={Number(card.id)} />
+                                <CounterProductButton productId={Number(card.id)} />
                                 <MyButton children="Оформить заказ" onClick={cartSubmit} />
                             </div>
                         ) : (

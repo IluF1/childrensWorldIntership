@@ -1,8 +1,6 @@
 import {memo, useState} from 'react';
 
-import {HeaderElement} from '../../shared/Ui/HeaderElement/HeaderElement';
-
-import {Title, cartImg, logo, useAppSelector} from '@/shared';
+import {HeaderElement, Title, cartImg, logo, useAppSelector} from '@/shared';
 import {Cart} from '@/widgets/Cart/Cart';
 
 import styles from './Header.module.css';
