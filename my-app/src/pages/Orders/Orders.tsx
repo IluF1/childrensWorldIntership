@@ -40,25 +40,29 @@ export const Orders = () => {
                             </li>
                         ))}
                     </ul>
-                    <StyledPagination
-                        className={styles.orders__pagination}
-                        count={Math.ceil(total / 10)}
-                        shape="rounded"
-                        page={page}
-                        onChange={handleChange}
-                        renderItem={(item) => (
-                            <PaginationItem
-                                {...item}
-                                components={{
-                                    previous: ArrowLeftIcon,
-                                    next: ArrowRightIcon,
-                                }}
-                            />
-                        )}
-                    />
+                    {total < 11 ? null : (
+                        <StyledPagination
+                            className={styles.orders__pagination}
+                            count={Math.ceil(total / 10)}
+                            shape="rounded"
+                            page={page}
+                            onChange={handleChange}
+                            renderItem={(item) => (
+                                <PaginationItem
+                                    {...item}
+                                    components={{
+                                        previous: ArrowLeftIcon,
+                                        next: ArrowRightIcon,
+                                    }}
+                                />
+                            )}
+                        />
+                    )}
                 </>
             ) : (
-                <Title style="bold">У вас пока нет заказов</Title>
+                <div className={styles.orders__no_orders}>
+                    <Title style="bold">У вас пока нет заказов</Title>
+                </div>
             )}
         </div>
     );

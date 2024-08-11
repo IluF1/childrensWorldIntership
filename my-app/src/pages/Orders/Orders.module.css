@@ -10,3 +10,8 @@
     display: flex;
     justify-content: center;
 }
+.orders__no_orders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
