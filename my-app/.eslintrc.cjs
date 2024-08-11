@@ -4,7 +4,6 @@ module.exports = {
     env: {browser: true, es2020: true},
     extends: ['@gravity-ui/eslint-config', '@gravity-ui/eslint-config/import-order'],
     parserOptions: {
-        // Required for certain syntax usages
         ecmaVersion: 2020,
     },
 };
