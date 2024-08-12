@@ -1,0 +1,16 @@
+@import url('../../app/assets/styles/variables.css');
+
+.container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 70vh;
+}
+.error__redirect_text {
+    font-size: var(--so-big-font-size);
+    font-weight: var(--bold-text-weight);
+    line-height: 32px;
+    color: var(--blue-color);
+}
