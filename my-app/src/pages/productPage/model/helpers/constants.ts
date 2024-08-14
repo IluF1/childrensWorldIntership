@@ -1,4 +1,4 @@
-import {currentUrl} from '@/shared';
+import { currentUrl } from '@/shared'
 
-const parts: string[] = String(currentUrl).split('/');
-export const productId: string = parts[parts.length - 1];
+const parts: string[] = String(currentUrl).split('/')
+export const productId: string = parts[parts.length - 1]
