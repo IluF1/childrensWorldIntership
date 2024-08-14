@@ -5,11 +5,13 @@ import {Button} from '@mui/material';
 export interface IButton {
     children: string;
     onClick?: MouseEventHandler<HTMLButtonElement>;
+    disabled?: boolean;
 }
 
-export const MyButton = ({children, onClick}: IButton) => {
+export const MyButton = ({children, onClick, disabled}: IButton) => {
     return (
         <Button
+            disabled={disabled}
             onClick={onClick}
             sx={{
                 background: 'rgba(0, 115, 230, 1)',

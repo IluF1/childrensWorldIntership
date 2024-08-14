@@ -13,6 +13,21 @@
            <img src = "https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" alt="materialUi"/>
 </p>
 
+# Using yarn
+Run command
+```sh
+cd children-sWorldInternship/my-app
+```
+Install dependencies
+```sh
+yarn
+```
+Run project
+```sh
+yarn run dev
+```
+
+
 # Using Docker
 To run the project with Docker:
 
@@ -25,3 +40,4 @@ Run the docker container
 ```sh
 docker run -p 5173:5173 my-app
 ```
+

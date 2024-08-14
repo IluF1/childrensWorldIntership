@@ -7,7 +7,6 @@ import {productId} from './model/helpers/constants';
 
 import {updateCart} from '@/features/Api/Api';
 import {useGetProductById} from '@/features/Hooks/useGetProductById';
-import {addItem} from '@/features/Slices/Cart.slice';
 import {
     CounterProductButton,
     MyButton,
@@ -35,7 +34,9 @@ export const ProductPage = memo(() => {
     if (!card) {
         return <div></div>;
     }
-
+    const totalPrice = cart.reduce((acc, item) => {
+        return acc + Number(item.product.price) * (item.quantity || 1);
+    }, 0);
     const existingItem = cart.find((item) => item.product.id === card.id);
     const handler = () => {
         const newItem: ICartData = {
@@ -56,7 +57,6 @@ export const ProductPage = memo(() => {
             updatedCart = [...cart, newItem];
         }
 
-        dispatch(addItem(newItem));
         dispatch(updateCart(updatedCart));
     };
 
@@ -101,7 +101,11 @@ export const ProductPage = memo(() => {
                         {existingItem ? (
                             <div className={styles['product-page__checkout']}>
                                 <CounterProductButton productId={Number(card.id)} />
-                                <MyButton children="Оформить заказ" onClick={cartSubmit} />
+                                <MyButton
+                                    children="Оформить заказ"
+                                    onClick={cartSubmit}
+                                    disabled={totalPrice >= 10000}
+                                />
                             </div>
                         ) : (
                             <div className={styles['product-page__add-to-cart-btn']}>

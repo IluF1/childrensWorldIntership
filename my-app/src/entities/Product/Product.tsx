@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import {Rating} from '@mui/material';
 
 import {Title, formatPrice, noneStar, star} from '@/shared';
@@ -14,7 +16,7 @@ interface IProduct {
     rating: number;
 }
 
-export const Product = ({title, price, picture, rating, id}: IProduct) => {
+export const Product = memo(({title, price, picture, rating, id}: IProduct) => {
     return (
         <a href={`/product/${id}`}>
             <div className={styles.product}>
@@ -38,4 +40,4 @@ export const Product = ({title, price, picture, rating, id}: IProduct) => {
             </div>
         </a>
     );
-};
+});

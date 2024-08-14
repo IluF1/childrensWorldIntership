@@ -1,5 +1,3 @@
-import {memo} from 'react';
-
 import {Title} from '../Title/Title';
 
 import {decrementQuantityItem, incrementQuantityItem} from '@/features/Slices/Cart.slice';
@@ -11,7 +9,7 @@ interface ICartButtonProps {
     productId: number;
 }
 
-export const CounterProductButton = memo(({productId}: ICartButtonProps) => {
+export const CounterProductButton = ({productId}: ICartButtonProps) => {
     const items = useAppSelector((state) => state.cart.cart);
     const item = items.find((product) => Number(product.product.id) === productId);
     const dispatch = useAppDispatch();
@@ -35,4 +33,4 @@ export const CounterProductButton = memo(({productId}: ICartButtonProps) => {
             </button>
         </div>
     );
-});
+};

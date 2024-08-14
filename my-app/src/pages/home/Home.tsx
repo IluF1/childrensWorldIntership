@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-import {PaginationItem} from '@mui/material';
+import {CircularProgress, PaginationItem} from '@mui/material';
 
 import {useGetProducts} from '../../features/Hooks/useGetProducts';
 import {useSetParam} from '../../features/Hooks/useSetParams';
@@ -24,38 +24,46 @@ export const Home = () => {
 
     return (
         <div className={styles.home}>
-            <ul className={styles.home__products}>
-                {data.map((product) => (
-                    <li key={product.id} className={styles.home__products_item}>
-                        <Product
-                            id={product.id}
-                            price={product.price}
-                            title={product.title}
-                            rating={Number(product.rating)}
-                            picture={product.picture}
-                            description=""
-                            category=""
+            {data ? (
+                <>
+                    <ul className={styles.home__products}>
+                        {data.map((product) => (
+                            <li key={product.id} className={styles.home__products_item}>
+                                <Product
+                                    id={product.id}
+                                    price={product.price}
+                                    title={product.title}
+                                    rating={Number(product.rating)}
+                                    picture={product.picture}
+                                    description=""
+                                    category=""
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={styles.home__pagination}>
+                        <StyledPagination
+                            count={Math.ceil(total / 15)}
+                            shape="rounded"
+                            page={page}
+                            onChange={handleChange}
+                            renderItem={(item) => (
+                                <PaginationItem
+                                    {...item}
+                                    components={{
+                                        previous: ArrowLeftIcon,
+                                        next: ArrowRightIcon,
+                                    }}
+                                />
+                            )}
                         />
-                    </li>
-                ))}
-            </ul>
-            <div className={styles.home__pagination}>
-                <StyledPagination
-                    count={Math.ceil(total / 15)}
-                    shape="rounded"
-                    page={page}
-                    onChange={handleChange}
-                    renderItem={(item) => (
-                        <PaginationItem
-                            {...item}
-                            components={{
-                                previous: ArrowLeftIcon,
-                                next: ArrowRightIcon,
-                            }}
-                        />
-                    )}
-                />
-            </div>
+                    </div>
+                </>
+            ) : (
+                <div className={styles.loader}>
+                    <CircularProgress color="secondary" />
+                </div>
+            )}
         </div>
     );
 };

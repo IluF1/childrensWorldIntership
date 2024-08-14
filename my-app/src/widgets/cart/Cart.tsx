@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {Box, Modal} from '@mui/material';
 
@@ -23,19 +23,25 @@ export const Cart = ({active, setActive}: ICart) => {
     const handleClose = () => setActive(false);
 
     const [order, setOrder] = useState(false);
+    const [error, setError] = useState(false);
     const data = useAppSelector((state) => state.cart.cart);
 
     const dispatch = useAppDispatch();
+    const totalPrice = data.reduce((acc, item) => {
+        return acc + Number(item.product.price) * (item.quantity || 1);
+    }, 0);
     const cartSubmit = () => {
         instance.post(`${baseUrl}cart/submit`, null);
         dispatch(updateCart([]));
         setOrder(true);
     };
-
-    const totalPrice = data.reduce((acc, item) => {
-        return acc + Number(item.product.price) * (item.quantity || 1);
-    }, 0);
-
+    useEffect(() => {
+        if (totalPrice <= 10000) {
+            setError(false);
+        } else {
+            setError(true);
+        }
+    }, [totalPrice]);
     return (
         <div>
             <Modal open={active} onClose={handleClose} className={styles.modal}>
@@ -61,8 +67,15 @@ export const Cart = ({active, setActive}: ICart) => {
                                         <Title style="bigPrice">{formatPrice(totalPrice)}</Title>
                                     </div>
                                 </div>
-                                <MyButton onClick={cartSubmit}>Оформить заказ</MyButton>
+                                <MyButton onClick={cartSubmit} disabled={error}>
+                                    Оформить заказ
+                                </MyButton>
                             </div>
+                            {error ? (
+                                <Title style="red">
+                                    Общая сумма корзины не должна превышать 10000 рублей
+                                </Title>
+                            ) : null}
                         </>
                     ) : (
                         <Title style="bold">

@@ -7,15 +7,16 @@ import {ErrorPage} from '@/pages/Error/Error';
 import {Home} from '@/pages/Home/Home';
 import {Orders} from '@/pages/Orders/Orders';
 import {ProductPage} from '@/pages/ProductPage/ProductPage';
-import {useAppDispatch} from '@/shared';
+import {useAppDispatch, useAppSelector} from '@/shared';
 
 // eslint-disable-next-line no-implicit-globals
 export const ReactRouter = () => {
     const dispatch = useAppDispatch();
+    const cart = useAppSelector((state) => state.cart.amount);
 
     useEffect(() => {
         dispatch(fetchCartData());
-    }, [dispatch]);
+    }, [cart]);
 
     return (
         <Router>

@@ -1,4 +1,3 @@
-// model/constants.js
 export const baseStyle = {
     width: 560,
     height: 'auto',

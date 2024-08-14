@@ -13,7 +13,12 @@
     justify-content: center;
     margin-top: 50px;
 }
-
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
 @media screen and (max-width: 1320px) {
     .home__products {
         gap: 15px;

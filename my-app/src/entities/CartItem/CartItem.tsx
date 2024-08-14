@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import {updateCart} from '@/features/Api/Api';
 import {
     CounterProductButton,
@@ -17,11 +19,11 @@ interface ICartItem {
     id: string;
 }
 
-export const CartItem = ({title, img, price, id}: ICartItem) => {
+export const CartItem = memo(({title, img, price, id}: ICartItem) => {
     const products = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch();
 
-    const count = products.find((item) => item.product.id === id)?.quantity || 0;
+    const totalProductCount = products.find((item) => item.product.id === id)?.quantity || 0;
 
     const removeItemFromCart = () => {
         dispatch(updateCart(products.filter((item) => item.product.id !== id)));
@@ -46,12 +48,12 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
                 </div>
 
                 <div className={styles['cart-item__price']}>
-                    {count > 1 ? (
+                    {totalProductCount > 1 ? (
                         <p className={styles['cart-item__price-per-piece']}>
                             {formatPrice(price) + ' за шт.'}
                         </p>
                     ) : null}
-                    {count === 0 ? (
+                    {totalProductCount === 0 ? (
                         <button onClick={removeItemFromCart}>
                             <Title style="red">
                                 <img src={trash} alt="trash" className={styles.trash_img} />
@@ -59,10 +61,10 @@ export const CartItem = ({title, img, price, id}: ICartItem) => {
                             </Title>
                         </button>
                     ) : (
-                        <Title style="price">{formatPrice(price * count)}</Title>
+                        <Title style="price">{formatPrice(price * totalProductCount)}</Title>
                     )}
                 </div>
             </div>
         </div>
     );
-};
+});
