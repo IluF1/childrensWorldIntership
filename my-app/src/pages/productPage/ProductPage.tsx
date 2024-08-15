@@ -101,9 +101,8 @@ export const ProductPage = memo(() => {
               className={styles['product-page__rating']}
               size="large"
             />
-            <div className={styles['product-page__price']}>
-              <Title style="bigPrice">{formatPrice(Number(card?.price))}</Title>
-            </div>
+
+            <Title style="bigPrice" className={styles['product-page__price']}>{formatPrice(Number(card?.price))}</Title>
 
             {existingItem
               ? (
@@ -117,9 +116,14 @@ export const ProductPage = memo(() => {
                   </div>
                 )
               : (
-                  <div className={styles['product-page__add-to-cart-btn']}>
-                    <MyButton onClick={handler}>Добавить в корзину</MyButton>
-                  </div>
+
+                  <MyButton
+                    onClick={handler}
+                    className={styles['product-page__add-to-cart-btn']}
+                  >
+                    Добавить в корзину
+                  </MyButton>
+
                 )}
             <div className={styles['product-page__return-condition']}>
               <Title style="bold">
@@ -132,11 +136,12 @@ export const ProductPage = memo(() => {
                 Условие возврата
               </Title>
               <h3 className={styles['product-page__return-condition-text']}>
-                Обменять или вернуть товар надлежащего качества можно в течение 14
-                дней с момента покупки.
+                Обменять или вернуть товар надлежащего качества можно в течение
+                14 дней с момента покупки.
               </h3>
               <h4 className={styles['product-page__prices-may-vary']}>
-                Цены в интернет-магазине могут отличаться от розничных магазинов.
+                Цены в интернет-магазине могут отличаться от розничных
+                магазинов.
               </h4>
             </div>
           </div>

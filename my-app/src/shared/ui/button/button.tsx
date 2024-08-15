@@ -6,15 +6,17 @@ export interface IButton {
   children: string
   onClick?: MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
+  className?: string
 }
 
-export function MyButton({ children, onClick, disabled }: IButton) {
+export function MyButton({ className, children, onClick, disabled }: IButton) {
   return (
     <Button
       disabled={disabled}
       onClick={onClick}
+      className={className}
       sx={{
-        'background': 'rgba(0, 115, 230, 1)',
+        'background': 'rgba(0, 115,230, 1)',
         'width': '100%',
         'height': '52px',
         'color': 'white',

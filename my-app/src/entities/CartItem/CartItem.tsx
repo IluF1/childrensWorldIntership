@@ -50,9 +50,11 @@ export const CartItem = memo(({ title, img, price, id }: ICartItem) => {
         <h1 className={styles['cart-item__title']}>
           <a href={`/product/${id}`}>{title}</a>
         </h1>
-        <div className={styles['cart-item__btn']}>
-          <CounterProductButton productId={Number(id)} />
-        </div>
+
+        <CounterProductButton
+          productId={Number(id)}
+          className={styles['cart-item__btn']}
+        />
 
         <div className={styles['cart-item__price']}>
           {totalProductCount > 1
@@ -72,7 +74,9 @@ export const CartItem = memo(({ title, img, price, id }: ICartItem) => {
                 </button>
               )
             : (
-                <Title style="price">{formatPrice(price * totalProductCount)}</Title>
+                <Title style="price">
+                  {formatPrice(price * totalProductCount)}
+                </Title>
               )}
         </div>
       </div>

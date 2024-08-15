@@ -19,7 +19,12 @@ export const Product = memo(({ title, price, picture, rating, id }: IProduct) =>
   return (
     <a href={`/product/${id}`}>
       <div className={styles.product}>
-        <img src={picture} alt={title} className={styles.product__img} loading="lazy" />
+        <img
+          src={picture}
+          alt={title}
+          className={styles.product__img}
+          loading="lazy"
+        />
         <div className={styles.product__info}>
           <Title style="name" children={title} />
           <div>
@@ -32,9 +37,13 @@ export const Product = memo(({ title, price, picture, rating, id }: IProduct) =>
               size="large"
             />
           </div>
-          <div className={styles.product__price}>
-            <Title style="price" children={formatPrice(price)} />
-          </div>
+
+          <Title
+            className={styles.product__price}
+            style="price"
+            children={formatPrice(price)}
+          />
+
         </div>
       </div>
     </a>

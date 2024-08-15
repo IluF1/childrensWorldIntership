@@ -6,9 +6,10 @@ import { halfMinus, minus, plus, useAppDispatch, useAppSelector } from '@/shared
 
 interface ICartButtonProps {
   productId: number
+  className?: string
 }
 
-export function CounterProductButton({ productId }: ICartButtonProps) {
+export function CounterProductButton({ productId, className }: ICartButtonProps) {
   const items = useAppSelector(state => state.cart.cart)
   const item = items.find(product => Number(product.product.id) === productId)
   const dispatch = useAppDispatch()
@@ -16,20 +17,26 @@ export function CounterProductButton({ productId }: ICartButtonProps) {
   const count = item ? item.quantity : 1
 
   return (
-    <div className={styles.button}>
-      <button
-        onClick={() => dispatch(decrementQuantityItem(String(productId)))}
-        className={styles.button__minus}
-      >
-        <img src={count === 0 ? halfMinus : minus} alt="minus" loading="lazy" />
-      </button>
-      <Title style="bold">{count}</Title>
-      <button
-        onClick={() => dispatch(incrementQuantityItem(String(productId)))}
-        className={styles.button__plus}
-      >
-        <img src={plus} alt="plus" loading="lazy" />
-      </button>
+    <div className={className}>
+      <div className={styles.button}>
+        <button
+          onClick={() => dispatch(decrementQuantityItem(String(productId)))}
+          className={styles.button__minus}
+        >
+          <img
+            src={count === 0 ? halfMinus : minus}
+            alt="minus"
+            loading="lazy"
+          />
+        </button>
+        <Title style="bold">{count}</Title>
+        <button
+          onClick={() => dispatch(incrementQuantityItem(String(productId)))}
+          className={styles.button__plus}
+        >
+          <img src={plus} alt="plus" loading="lazy" />
+        </button>
+      </div>
     </div>
   )
 }

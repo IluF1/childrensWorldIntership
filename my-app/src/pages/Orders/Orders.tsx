@@ -63,9 +63,11 @@ export function Orders() {
             </>
           )
         : (
-            <div className={styles.orders__no_orders}>
-              <Title style="bold">У вас пока нет заказов</Title>
-            </div>
+
+            <Title style="bold" className={styles.orders__no_orders}>
+              У вас пока нет заказов
+            </Title>
+
           )}
     </div>
   )

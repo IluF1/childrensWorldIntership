@@ -24,13 +24,18 @@ export const styleClassMap: { [key: string]: string } = {
 export interface ITitle {
   style: StylesTitle
   children: any
+  className?: string
 }
 
-export const Title = memo(({ children, style }: ITitle) => {
+export const Title = memo(({ children, style, className }: ITitle) => {
   const classNames = ['title']
   if (style && styleClassMap[style]) {
     classNames.push(styleClassMap[style])
   }
 
-  return <p className={classNames.join(' ')}>{children}</p>
+  return (
+    <div className={className}>
+      <p className={classNames.join(' ')}>{children}</p>
+    </div>
+  )
 })
