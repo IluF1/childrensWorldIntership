@@ -24,11 +24,10 @@ export function Cart({ active, setActive }: ICart) {
   const [order, setOrder] = useState(false)
   const [error, setError] = useState(false)
   const data = useAppSelector(state => state.cart.cart)
+  const totalPrice = useAppSelector(state => state.cart.totalPrice)
 
   const dispatch = useAppDispatch()
-  const totalPrice = data.reduce((acc, item) => {
-    return acc + Number(item.product.price) * (item.quantity || 1)
-  }, 0)
+
   const cartSubmit = () => {
     instance.post(`${baseUrl}cart/submit`, null)
     dispatch(updateCart([]))

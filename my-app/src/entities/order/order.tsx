@@ -29,7 +29,7 @@ export function Order({ created, product, id, total }: IOrder) {
       <ul className={styles.order__content}>
         {product.map((prod, index) => (
           <li key={index} className={styles.order__product}>
-            <a href={`/product/${id}`}>
+            <a href={`/product/${prod.id}`}>
               <img
                 src={prod.picture}
                 alt={`Product ${prod.id}`}

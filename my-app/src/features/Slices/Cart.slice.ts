@@ -7,11 +7,13 @@ import { fetchCartData, updateCart } from '../Api/Api'
 export interface IInitialState {
   cart: ICartData[]
   amount: number
+  totalPrice: number
 }
 
 const initialState: IInitialState = {
   cart: [],
   amount: 0,
+  totalPrice: 0,
 }
 
 const cartSlice = createSlice({
@@ -34,6 +36,9 @@ const cartSlice = createSlice({
         item.quantity--
       }
     },
+    setTotalPrice: (state, action: PayloadAction<number>) => {
+      state.totalPrice = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -42,6 +47,9 @@ const cartSlice = createSlice({
         (state, action: PayloadAction<ICartData[]>) => {
           state.cart = action.payload
           state.amount = state.cart.length
+          state.totalPrice = state.cart.reduce((acc, item) => {
+            return acc + Number(item.product.price) * (item.quantity || 1)
+          }, 0)
         },
       )
       .addCase(fetchCartData.rejected, (_state, action) => {
@@ -52,11 +60,14 @@ const cartSlice = createSlice({
         (state, action: PayloadAction<ICartData[]>) => {
           state.cart = action.payload
           state.amount = state.cart.length
+          state.totalPrice = state.cart.reduce((acc, item) => {
+            return acc + Number(item.product.price) * (item.quantity || 1)
+          }, 0)
         },
       )
   },
 })
 
-export const { incrementQuantityItem, decrementQuantityItem }
+export const { incrementQuantityItem, decrementQuantityItem, setTotalPrice }
   = cartSlice.actions
 export const cartReducer = cartSlice.reducer

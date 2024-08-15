@@ -1,6 +1,6 @@
-import { memo } from 'react'
-
+import { memo, useEffect } from 'react'
 import styles from './CartItem.module.css'
+
 import { updateCart } from '@/features/Api/Api'
 import {
   CounterProductButton,
@@ -10,6 +10,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/shared'
+import { setTotalPrice } from '@/features/Slices/Cart.slice'
 
 interface ICartItem {
   title: string
@@ -23,6 +24,13 @@ export const CartItem = memo(({ title, img, price, id }: ICartItem) => {
   const dispatch = useAppDispatch()
 
   const totalProductCount = products.find(item => item.product.id === id)?.quantity || 0
+
+  useEffect(() => {
+    const updatedTotalPrice = products.reduce((acc, item) => {
+      return acc + Number(item.product.price) * (item.quantity || 1)
+    }, 0)
+    dispatch(setTotalPrice(updatedTotalPrice))
+  }, [products, dispatch])
 
   const removeItemFromCart = () => {
     dispatch(updateCart(products.filter(item => item.product.id !== id)))

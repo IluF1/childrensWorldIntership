@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 
 import { Rating } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -23,19 +23,27 @@ import {
   useAppSelector,
 } from '@/shared'
 import type { ICartData } from '@/widgets/Cart/model/helpers/interfaces'
+import { setTotalPrice } from '@/features/Slices/Cart.slice'
 
 export const ProductPage = memo(() => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { card } = useGetProductById(Number(productId))
   const cart = useAppSelector(state => state.cart.cart)
+  const totalPrice = useAppSelector(state => state.cart.totalPrice)
 
+  useEffect(() => {
+    dispatch(
+      setTotalPrice(
+        cart.reduce((acc, item) => {
+          return acc + Number(item.product.price) * (item.quantity || 1)
+        }, 0),
+      ),
+    )
+  }, [cart])
   if (!card) {
     return <div></div>
   }
-  const totalPrice = cart.reduce((acc, item) => {
-    return acc + Number(item.product.price) * (item.quantity || 1)
-  }, 0)
   const existingItem = cart.find(item => item.product.id === card.id)
   const handler = () => {
     const newItem: ICartData = {
