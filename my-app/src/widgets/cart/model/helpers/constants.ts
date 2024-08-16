@@ -1,3 +1,7 @@
+import { createTheme } from '@mui/material/styles'
+
+const theme = createTheme()
+
 export const baseStyle = {
   width: 560,
   height: 'auto',
@@ -10,4 +14,11 @@ export const baseStyle = {
   marginInline: 'auto',
   marginBlockStart: '50vh',
   transform: 'translateY(-50%)',
+  [theme.breakpoints.down('md')]: {
+    width: 320,
+    padding: '10px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: 280,
+  },
 }

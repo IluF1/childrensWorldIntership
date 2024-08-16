@@ -7,3 +7,16 @@ export interface IProduct {
   picture: string
   rating: number
 }
+export interface ICartData {
+  product: {
+    id: string
+    title: string
+    description: string
+    category: string
+    price: string
+    picture: string
+    rating: string
+  }
+  quantity: number
+  createdAt?: string
+}

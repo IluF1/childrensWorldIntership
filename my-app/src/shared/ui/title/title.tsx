@@ -21,13 +21,13 @@ export const styleClassMap: { [key: string]: string } = {
   red: 'red-title',
 }
 
-export interface ITitle {
+export interface Props {
   style: StylesTitle
   children: any
   className?: string
 }
 
-export const Title = memo(({ children, style, className }: ITitle) => {
+export const Title = memo(({ children, style, className }: Props) => {
   const classNames = ['title']
   if (style && styleClassMap[style]) {
     classNames.push(styleClassMap[style])

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { Box, Modal } from '@mui/material'
 
 import { baseStyle } from './model/helpers/constants'
-import type { ICart } from './model/helpers/interfaces'
 
 import styles from './Cart.module.css'
 import { updateCart } from '@/features/Api/Api'
@@ -18,7 +17,12 @@ import {
   useAppSelector,
 } from '@/shared'
 
-export function Cart({ active, setActive }: ICart) {
+export interface Props {
+  active: boolean
+  setActive: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function Cart({ active, setActive }: Props) {
   const handleClose = () => setActive(false)
 
   const [order, setOrder] = useState(false)

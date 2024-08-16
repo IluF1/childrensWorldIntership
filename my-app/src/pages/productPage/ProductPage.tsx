@@ -8,6 +8,9 @@ import { productId } from './model/helpers/constants'
 import styles from './ProductPage.module.css'
 import { updateCart } from '@/features/Api/Api'
 import { useGetProductById } from '@/features/Hooks/useGetProductById'
+import type {
+  ICartData,
+} from '@/shared'
 import {
   CounterProductButton,
   MyButton,
@@ -22,7 +25,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/shared'
-import type { ICartData } from '@/widgets/Cart/model/helpers/interfaces'
+
 import { setTotalPrice } from '@/features/Slices/Cart.slice'
 
 export const ProductPage = memo(() => {

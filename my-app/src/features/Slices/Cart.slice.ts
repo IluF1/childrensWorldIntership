@@ -1,8 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-import type { ICartData } from '../../widgets/Cart/model/helpers/interfaces'
 import { fetchCartData, updateCart } from '../Api/Api'
+import type { ICartData } from '@/shared'
 
 export interface IInitialState {
   cart: ICartData[]

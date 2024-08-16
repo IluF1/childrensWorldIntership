@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import type { ICartData } from '@/shared'
 import { baseUrl, instance } from '@/shared'
-import type { ICartData } from '@/widgets/Cart/model/helpers/interfaces'
 
 export const fetchCartData = createAsyncThunk<ICartData[], void, { rejectValue: string }>(
   'cart/fetchData',

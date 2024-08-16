@@ -25,3 +25,6 @@
 .modal__redirect_text {
     color: var(--blue-color);
 }
+@media screen and (max-width: 992px){
+   
+}

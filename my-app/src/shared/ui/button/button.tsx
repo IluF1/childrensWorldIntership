@@ -2,14 +2,14 @@ import type { MouseEventHandler } from 'react'
 
 import { Button } from '@mui/material'
 
-export interface IButton {
+export interface Props {
   children: string
   onClick?: MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
   className?: string
 }
 
-export function MyButton({ className, children, onClick, disabled }: IButton) {
+export function MyButton({ className, children, onClick, disabled }: Props) {
   return (
     <Button
       disabled={disabled}

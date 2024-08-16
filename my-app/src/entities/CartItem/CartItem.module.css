@@ -50,3 +50,21 @@
     position: absolute;
     margin-top: -15px;
 }
+
+
+@media screen and (max-width:992px) {
+    .cart-item__title  {
+        display: none;
+    }
+    .cart-item__btn  {
+        margin-left: 65px;
+        width: 100px;
+    }
+    .content {
+        padding: 0;
+    }
+    .cart-item__img-block  {
+        padding-top: 23px;
+    }
+    
+}

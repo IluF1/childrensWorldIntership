@@ -7,7 +7,7 @@
     cursor: pointer;
     font-size: var(--middle-font-size);
     width: 50px;
-    margin-bottom: -10px;
+    margin-bottom: 10px;
 }
 
 .product-page__back-img {
@@ -50,10 +50,10 @@
 .product-page__price {
     margin-top: 10px;
 }
-
-.product-page__add-to-cart-btn {
-    margin-top: 40px;
+.product-page__price {
+    margin-bottom: 20px;
 }
+
 
 .product-page__description {
     width: 100%;
@@ -121,6 +121,6 @@
     }
     .product-page__container {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 }

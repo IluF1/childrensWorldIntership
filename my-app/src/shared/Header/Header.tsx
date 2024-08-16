@@ -1,6 +1,7 @@
 import { memo, useState } from 'react'
 
 import styles from './Header.module.css'
+import { BurgerMenu } from './model/ui/burger/burger'
 import { HeaderElement, Title, cartImg, logo, useAppSelector } from '@/shared'
 import { Cart } from '@/widgets/Cart/Cart'
 
@@ -21,13 +22,33 @@ export const Header = memo(() => {
         </li>
       </ul>
       <div className={styles.header__cart}>
-        <button className={styles['header__cart-btn']} onClick={() => setActive(!active)}>
-          <img src={cartImg} alt="cart" className={styles['header__cart-img']} />
-          <Title children={`Корзина (${amount})`} style="bold" />
+        <button
+          className={styles['header__cart-btn']}
+          onClick={() => setActive(!active)}
+        >
+          <img
+            src={cartImg}
+            alt="cart"
+            className={styles['header__cart-img']}
+          />
+          <Title children={`Корзина (${amount})`} style="bold" className={styles['header__cart-text']} />
         </button>
       </div>
       {active && <Cart active={active} setActive={setActive} />}
-      <div className={styles.header__burger}></div>
+
+      <BurgerMenu
+        className={styles.header__burger}
+        options={[
+          {
+            name: 'Товары',
+            href: '/',
+          },
+          {
+            name: 'Заказы',
+            href: '/orders',
+          },
+        ]}
+      />
     </header>
   )
 })

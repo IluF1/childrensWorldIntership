@@ -43,4 +43,15 @@
     .header {
         padding: 10px;
     }
+    .header__burger {
+        display: block;
+        float: right;
+        margin-top: -10px;
+    }
+    .header__cart-text {
+        display: none;
+    }
+    .header__cart-img  {
+        margin-top: 4px;
+    }
 }
