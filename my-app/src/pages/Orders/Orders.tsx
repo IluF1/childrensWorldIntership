@@ -6,7 +6,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../Home/ui/icons'
 import { StyledPagination } from '../Home/ui/pagination/pagination'
 
 import styles from './Orders.module.css'
-import { Order } from '@/entities/Order/order'
+import { Order } from '@/entities/Order/Order'
 import { useGetOrders } from '@/features/Hooks/useGetOrders'
 import { useSetParam } from '@/features/Hooks/useSetParams'
 import { Title, currentUrl } from '@/shared'
