@@ -4,8 +4,8 @@ import { Rating } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import { productId } from './model/helpers/constants'
-
 import styles from './ProductPage.module.css'
+import notImgIcon from '@/app/assets/images/no-image.png'
 import { updateCart } from '@/features/Api/Api'
 import { useGetProductById } from '@/features/Hooks/useGetProductById'
 import type {
@@ -16,7 +16,6 @@ import {
   MyButton,
   Title,
   arrowLeft,
-  baseUrl,
   formatPrice,
   instance,
   noneStar,
@@ -34,21 +33,21 @@ export const ProductPage = memo(() => {
   const { card } = useGetProductById(Number(productId))
   const cart = useAppSelector(state => state.cart.cart)
   const totalPrice = useAppSelector(state => state.cart.totalPrice)
+  const existingItem = cart.find(item => item.product.id === card?.id)
 
   useEffect(() => {
-    dispatch(
-      setTotalPrice(
-        cart.reduce((acc, item) => {
-          return acc + Number(item.product.price) * (item.quantity || 1)
-        }, 0),
-      ),
+    const newTotalPrice = cart.reduce(
+      (acc, item) => acc + Number(item.product.price) * item.quantity,
+      0,
     )
-  }, [cart])
+    dispatch(setTotalPrice(newTotalPrice))
+  }, [cart, dispatch])
+
   if (!card) {
-    return <div></div>
+    return null
   }
-  const existingItem = cart.find(item => item.product.id === card.id)
-  const handler = () => {
+
+  const handleAddToCart = () => {
     const newItem: ICartData = {
       product: {
         id: card.id,
@@ -59,19 +58,18 @@ export const ProductPage = memo(() => {
         picture: card.picture,
         rating: String(card.rating),
       },
-      quantity: 1,
+      quantity: existingItem ? existingItem.quantity + 1 : 1,
     }
 
-    let updatedCart: ICartData[] = []
-    if (!existingItem) {
-      updatedCart = [...cart, newItem]
-    }
+    const updatedCart = existingItem
+      ? cart.map(item => (item.product.id === card.id ? newItem : item))
+      : [...cart, newItem]
 
     dispatch(updateCart(updatedCart))
   }
 
-  const cartSubmit = () => {
-    instance.post(`${baseUrl}cart/submit`, null)
+  const handleCartSubmit = () => {
+    instance.post('cart/submit', null)
     dispatch(updateCart([]))
   }
 
@@ -89,11 +87,15 @@ export const ProductPage = memo(() => {
       <div className={styles['product-page__container']}>
         <div className={styles['product-page__main']}>
           <img
-            src={card?.picture}
+            src={card.picture}
             alt={card?.title}
             className={styles['product-page__picture']}
             loading="lazy"
+            onError={(e) => {
+              e.currentTarget.src = notImgIcon
+            }}
           />
+
           <div className={styles['product-page__information']}>
             <Title style="bigName">{card?.title}</Title>
             <Rating
@@ -105,7 +107,9 @@ export const ProductPage = memo(() => {
               size="large"
             />
 
-            <Title style="bigPrice" className={styles['product-page__price']}>{formatPrice(Number(card?.price))}</Title>
+            <Title style="bigPrice" className={styles['product-page__price']}>
+              {formatPrice(Number(card?.price))}
+            </Title>
 
             {existingItem
               ? (
@@ -113,20 +117,18 @@ export const ProductPage = memo(() => {
                     <CounterProductButton productId={Number(card.id)} />
                     <MyButton
                       children="Оформить заказ"
-                      onClick={cartSubmit}
+                      onClick={handleCartSubmit}
                       disabled={totalPrice >= 10000}
                     />
                   </div>
                 )
               : (
-
                   <MyButton
-                    onClick={handler}
+                    onClick={handleAddToCart}
                     className={styles['product-page__add-to-cart-btn']}
                   >
                     Добавить в корзину
                   </MyButton>
-
                 )}
             <div className={styles['product-page__return-condition']}>
               <Title style="bold">

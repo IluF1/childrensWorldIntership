@@ -1,21 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { CircularProgress, PaginationItem } from '@mui/material'
 
-import { useGetProducts } from '../../features/Hooks/useGetProducts'
 import { useSetParam } from '../../features/Hooks/useSetParams'
 
 import { ArrowLeftIcon, ArrowRightIcon } from './ui/icons'
 
 import styles from './Home.module.css'
 import { StyledPagination } from '@/pages/Home/ui/pagination/pagination'
-import { Product, currentUrl } from '@/shared'
+import { Product, currentUrl, useAppDispatch, useAppSelector } from '@/shared'
+import { fetchProducts } from '@/features/Api/Api'
 
 export function Home() {
   const [page, setPage] = useState<number>(Number(currentUrl.searchParams.get('page')) || 1)
   useSetParam('page', String(page))
+  const dispatch = useAppDispatch()
 
-  const { data, total } = useGetProducts(page)
+  useEffect(() => {
+    dispatch(fetchProducts(page))
+  }, [page])
+
+  const data = useAppSelector(state => state.products.products)
+  const total = useAppSelector(state => state.products.total)
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)

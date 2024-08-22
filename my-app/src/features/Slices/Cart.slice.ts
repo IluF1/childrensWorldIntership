@@ -32,7 +32,7 @@ const cartSlice = createSlice({
       const item = state.cart.find(
         product => product.product.id === action.payload,
       )
-      if (item && item.quantity !== 0) {
+      if (item && item.quantity > 0) {
         item.quantity--
       }
     },

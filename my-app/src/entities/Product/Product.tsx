@@ -5,6 +5,8 @@ import { Rating } from '@mui/material'
 import styles from './Product.module.css'
 import { Title, formatPrice, noneStar, star } from '@/shared'
 
+import notImgIcon from '@/app/assets/images/no-image.png'
+
 interface IProduct {
   id: string
   title: string
@@ -24,6 +26,9 @@ export const Product = memo(({ title, price, picture, rating, id }: IProduct) =>
           alt={title}
           className={styles.product__img}
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = notImgIcon
+          }}
         />
         <div className={styles.product__info}>
           <Title style="name" children={title} />
@@ -43,7 +48,6 @@ export const Product = memo(({ title, price, picture, rating, id }: IProduct) =>
             style="price"
             children={formatPrice(price)}
           />
-
         </div>
       </div>
     </a>

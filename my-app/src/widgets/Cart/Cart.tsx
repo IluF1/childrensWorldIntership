@@ -10,7 +10,6 @@ import {
   CartItem,
   MyButton,
   Title,
-  baseUrl,
   formatPrice,
   instance,
   useAppDispatch,
@@ -25,15 +24,15 @@ export interface Props {
 export function Cart({ active, setActive }: Props) {
   const handleClose = () => setActive(false)
 
-  const [order, setOrder] = useState(false)
-  const [error, setError] = useState(false)
+  const [order, setOrder] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const data = useAppSelector(state => state.cart.cart)
   const totalPrice = useAppSelector(state => state.cart.totalPrice)
 
   const dispatch = useAppDispatch()
 
   const cartSubmit = () => {
-    instance.post(`${baseUrl}cart/submit`, null)
+    instance.post('cart/submit', null)
     dispatch(updateCart([]))
     setOrder(true)
   }

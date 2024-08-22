@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { PaginationItem } from '@mui/material'
 
@@ -7,14 +7,19 @@ import { StyledPagination } from '../Home/ui/pagination/pagination'
 
 import styles from './Orders.module.css'
 import { Order } from '@/entities/Order/Order'
-import { useGetOrders } from '@/features/Hooks/useGetOrders'
 import { useSetParam } from '@/features/Hooks/useSetParams'
-import { Title, currentUrl } from '@/shared'
+import { Title, currentUrl, useAppDispatch, useAppSelector } from '@/shared'
+import { fetchOrders } from '@/features/Api/Api'
 
 export function Orders() {
   const [page, setPage] = useState<number>(Number(currentUrl.searchParams.get('page')) || 1)
   useSetParam('page', String(page))
-  const { data, total = 0 } = useGetOrders(page)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchOrders(page))
+  }, [page])
+  const total = useAppSelector(state => state.orders.total)
+  const orders = useAppSelector(state => state.orders.orders)
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
@@ -22,11 +27,11 @@ export function Orders() {
 
   return (
     <div>
-      {data.length
+      {orders.length
         ? (
             <>
               <ul className={styles.orders}>
-                {data.map((orderGroup, groupIndex) => (
+                {orders.map((orderGroup, groupIndex) => (
                   <li key={groupIndex} className={styles.orderGroup}>
                     <Order
                       total={orderGroup.reduce(

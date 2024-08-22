@@ -18,7 +18,7 @@ export { MyButton } from './ui/Button/Button'
 export { CounterProductButton } from './ui/CounterProductButton/CounterProductButton'
 export { HeaderElement } from './ui/HeaderElement/HeaderElement'
 export { Title } from './ui/Title/Title'
-export { baseUrl, currentUrl, formatPrice, instance } from './utils/constants/constants'
+export { currentUrl, formatPrice, instance } from './utils/constants/constants'
 
 export type { IProduct } from './utils/interfaces/interfaces'
 export type { ICartData } from './utils/interfaces/interfaces'

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const currentUrl = new URL(window.location.href)
-export const baseUrl = 'https://skillfactory-task.detmir.team/'
+const baseUrl = 'https://skillfactory-task.detmir.team'
 export function formatPrice(number: number) {
   return new Intl.NumberFormat('ru', {
     style: 'currency',
@@ -12,5 +12,6 @@ export function formatPrice(number: number) {
 }
 
 export const instance = axios.create({
+  baseURL: baseUrl,
   withCredentials: true,
 })

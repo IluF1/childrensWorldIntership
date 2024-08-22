@@ -5,6 +5,8 @@ import { ru } from 'date-fns/locale'
 import styles from './Order.module.css'
 import { Title, formatPrice } from '@/shared'
 
+import notImgIcon from '@/app/assets/images/no-image.png'
+
 interface Product {
   id: string
   category: string
@@ -34,6 +36,9 @@ export function Order({ created, product, id, total }: IOrder) {
                 src={prod.picture}
                 alt={`Product ${prod.id}`}
                 className={styles.order__pictures}
+                onError={(e) => {
+                  e.currentTarget.src = notImgIcon
+                }}
               />
             </a>
           </li>

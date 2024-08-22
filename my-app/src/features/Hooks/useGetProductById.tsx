@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import type { IProduct } from '@/shared'
-import { baseUrl, instance } from '@/shared'
+import { instance } from '@/shared'
 
 export function useGetProductById(id: number) {
-  const url = `${baseUrl}products/${id}`
+  const url = `/products/${id}`
   const [card, setCard] = useState<IProduct | undefined>(undefined)
   const navigate = useNavigate()
 

@@ -12,6 +12,8 @@ import {
 } from '@/shared'
 import { setTotalPrice } from '@/features/Slices/Cart.slice'
 
+import notImgIcon from '@/app/assets/images/no-image.png'
+
 interface Props {
   title: string
   img: string
@@ -47,6 +49,9 @@ export const CartItem = memo(({ title, img, price, id }: Props) => {
               alt={title}
               loading="lazy"
               className={styles['cart-item__img']}
+              onError={(e) => {
+                e.currentTarget.src = notImgIcon
+              }}
             />
           </div>
         </a>
