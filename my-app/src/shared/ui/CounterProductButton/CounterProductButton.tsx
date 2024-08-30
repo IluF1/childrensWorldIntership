@@ -1,6 +1,6 @@
 import { Title } from '../Title/Title'
 import styles from './CounterProductButton.module.css'
-import { updateCartItemQuantity } from '@/features/Slices/Cart.slice'
+import { updateCart } from '@/features/Api/Api'
 import {
   halfMinus,
   minus,
@@ -23,25 +23,24 @@ export function CounterProductButton({ productId, className }: Props) {
 
   const count = item ? item.quantity : 1
 
+  const updateCartQuantity = (newQuantity: number) => {
+    const updatedCart = items.map(product =>
+      Number(product.product.id) === productId
+        ? { ...product, quantity: newQuantity }
+        : product,
+    )
+    dispatch(updateCart(updatedCart))
+  }
+
   const handleIncrement = () => {
     if (item) {
-      dispatch(
-        updateCartItemQuantity({
-          productId: String(productId),
-          quantity: count + 1,
-        }),
-      )
+      updateCartQuantity(count + 1)
     }
   }
 
   const handleDecrement = () => {
-    if (item && count > 1) {
-      dispatch(
-        updateCartItemQuantity({
-          productId: String(productId),
-          quantity: count - 1,
-        }),
-      )
+    if (item && count > 0) {
+      updateCartQuantity(count - 1)
     }
   }
 
@@ -50,7 +49,7 @@ export function CounterProductButton({ productId, className }: Props) {
       <div className={styles.button}>
         <button onClick={handleDecrement} className={styles.button__minus}>
           <img
-            src={count === 1 ? halfMinus : minus}
+            src={count === 0 ? halfMinus : minus}
             alt="minus"
             loading="lazy"
           />
