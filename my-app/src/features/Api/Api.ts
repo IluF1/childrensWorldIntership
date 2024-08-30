@@ -96,3 +96,22 @@ export const fetchProducts = createAsyncThunk<
     return rejectWithValue('Не удалось получить заказы')
   }
 })
+export const updateCartItemQuantity = createAsyncThunk<
+  ICartData[],
+  { productId: string, quantity: number },
+  { rejectValue: string }
+>(
+  'cart/updateCartItemQuantity',
+  async ({ productId, quantity }, { rejectWithValue }) => {
+    try {
+      const response = await instance.post('/cart/update', {
+        data: [{ id: productId, quantity }],
+      })
+      return response.data
+    }
+    catch (error) {
+      console.error('Ошибка при обновлении количества товара:', error)
+      return rejectWithValue('Не удалось обновить количество товара')
+    }
+  },
+)

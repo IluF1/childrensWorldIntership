@@ -32,7 +32,7 @@ export function Cart({ active, setActive }: Props) {
   const dispatch = useAppDispatch()
 
   const cartSubmit = () => {
-    instance.post('cart/submit', null)
+    instance.post('/cart/submit', null)
     dispatch(updateCart([]))
     setOrder(true)
   }

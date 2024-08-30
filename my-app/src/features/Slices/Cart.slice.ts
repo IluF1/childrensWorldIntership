@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-import { fetchCartData, updateCart } from '../Api/Api'
+import { fetchCartData, updateCart, updateCartItemQuantity } from '../Api/Api'
 import type { ICartData } from '@/shared'
 
 export interface IInitialState {
@@ -65,9 +65,18 @@ const cartSlice = createSlice({
           }, 0)
         },
       )
+    builder.addCase(updateCartItemQuantity.fulfilled, (state, action) => {
+      state.cart = action.payload
+      state.amount = state.cart.length
+      state.totalPrice = state.cart.reduce((acc, item) => {
+        return acc + Number(item.product.price) * (item.quantity || 1)
+      }, 0)
+    })
   },
-})
+},
+)
 
 export const { incrementQuantityItem, decrementQuantityItem, setTotalPrice }
   = cartSlice.actions
 export const cartReducer = cartSlice.reducer
+export { updateCartItemQuantity }
